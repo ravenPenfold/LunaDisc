@@ -86,8 +86,8 @@ namespace LunaDisc
             lvBrowser.TabIndex = 1;
             lvBrowser.UseCompatibleStateImageBehavior = false;
             lvBrowser.SelectedIndexChanged += lvBrowser_SelectedIndexChanged;
-            lvBrowser.MouseUp += lvBrowser_Click;
             lvBrowser.DoubleClick += lvBrowser_DoubleClick;
+            lvBrowser.MouseUp += lvBrowser_Click;
             lvBrowser.Resize += lvBrowser_Resize;
             // 
             // toolStrip
@@ -122,13 +122,14 @@ namespace LunaDisc
             fileContextMenu.ImageScalingSize = new Size(20, 20);
             fileContextMenu.Items.AddRange(new ToolStripItem[] { extractFileToolStripMenuItem });
             fileContextMenu.Name = "fileContextMenu";
-            fileContextMenu.Size = new Size(151, 28);
+            fileContextMenu.Size = new Size(211, 56);
             // 
             // extractFileToolStripMenuItem
             // 
             extractFileToolStripMenuItem.Name = "extractFileToolStripMenuItem";
-            extractFileToolStripMenuItem.Size = new Size(150, 24);
+            extractFileToolStripMenuItem.Size = new Size(210, 24);
             extractFileToolStripMenuItem.Text = "Extract File";
+            extractFileToolStripMenuItem.Click += extractFileToolStripMenuItem_Click;
             // 
             // MainWindow
             // 

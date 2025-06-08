@@ -37,7 +37,7 @@ namespace LunaDisc.Classes.File
         {
             switch (type)
             {
-                case Types.TYPE_CD_DISC:
+                case Types.TYPE_CD_DISC:    // Standard ISO CD-ROM Image
                     cdReader = new CDReader(new FileStream(fileName, FileMode.Open), true);
                     break;
 
@@ -46,6 +46,7 @@ namespace LunaDisc.Classes.File
             fType = type;
         }
 
+        // Get files and directories
         public Returner getDirectoriesInPath()
         {
             Returner returner = new Returner();
@@ -57,7 +58,7 @@ namespace LunaDisc.Classes.File
                         returner.errorCode = ErrorCodes.NoError;
                         foreach (var dir in cdReader.GetDirectories(path))
                         {
-                            returner.strings.Add(dir.Split("\\").Last());
+                            returner.strings.Add(dir.Split("\\").Last());   // Returns only the LAST part of a fullDirectory string
                         }
                     } else
                     {
@@ -88,6 +89,26 @@ namespace LunaDisc.Classes.File
                     break;
             }
             return returner;
+        }
+
+        // Extractors
+        public ErrorCodes extractFile(string path, string output)
+        {
+            if (cdReader.FileExists(path))
+            {
+                var read = cdReader.OpenFile(path, FileMode.Open);
+                var write = new BinaryWriter(new FileStream(output, FileMode.Create));
+                for (int i = 0; i < cdReader.GetFileInfo(path).Length; i++)
+                {
+                    write.Write((byte)read.ReadByte());
+                }
+                read.Close();
+                write.Close();
+            } else
+            {
+                return ErrorCodes.fsNotAFile;
+            }
+            return ErrorCodes.NoError;
         }
     }
 }

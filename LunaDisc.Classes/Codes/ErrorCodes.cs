@@ -11,6 +11,7 @@ namespace LunaDisc.Classes.Codes
         NoError = 0x0000,
 
         // FileSystem Error
-        fsNotADirectory = 0x0100
+        fsNotADirectory = 0x0100,
+        fsNotAFile = 0x0101
     }
 }

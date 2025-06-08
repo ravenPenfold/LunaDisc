@@ -95,7 +95,7 @@ namespace LunaDisc
 
         private void lvBrowser_Click(object sender, MouseEventArgs e)
         {
-            switch(e.Button)
+            switch (e.Button)
             {
                 case MouseButtons.Right:
                     if (lvBrowser.SelectedItems.Count > 0)
@@ -106,6 +106,18 @@ namespace LunaDisc
                         }
                     }
                     break;
+            }
+        }
+
+        private void extractFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.FileName = lvBrowser.SelectedItems[0].Text;
+            DialogResult dr = sfd.ShowDialog();
+
+            if (dr == DialogResult.OK)
+            {
+                image.extractFile(image.path + "\\" + lvBrowser.SelectedItems[0].Text, sfd.FileName);
             }
         }
     }
