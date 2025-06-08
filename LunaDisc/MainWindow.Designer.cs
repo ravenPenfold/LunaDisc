@@ -1,4 +1,5 @@
 ﻿
+
 namespace LunaDisc
 {
     partial class MainWindow
@@ -31,11 +32,16 @@ namespace LunaDisc
         {
             ListViewGroup listViewGroup1 = new ListViewGroup("Folders", HorizontalAlignment.Left);
             ListViewGroup listViewGroup2 = new ListViewGroup("Files", HorizontalAlignment.Left);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             menuStrip1 = new MenuStrip();
             tsmFile = new ToolStripMenuItem();
             tsbOpenImage = new ToolStripMenuItem();
             lvBrowser = new ListView();
+            toolStrip = new ToolStrip();
+            tsbBackDirectory = new ToolStripButton();
+            tstActiveDirectory = new ToolStripTextBox();
             menuStrip1.SuspendLayout();
+            toolStrip.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -58,7 +64,7 @@ namespace LunaDisc
             // tsbOpenImage
             // 
             tsbOpenImage.Name = "tsbOpenImage";
-            tsbOpenImage.Size = new Size(224, 26);
+            tsbOpenImage.Size = new Size(174, 26);
             tsbOpenImage.Text = "Open Image";
             tsbOpenImage.Click += tsbOpenImage_Click;
             // 
@@ -70,11 +76,41 @@ namespace LunaDisc
             listViewGroup2.Header = "Files";
             listViewGroup2.Name = "gpFiles";
             lvBrowser.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2 });
-            lvBrowser.Location = new Point(0, 28);
+            lvBrowser.Location = new Point(0, 55);
             lvBrowser.Name = "lvBrowser";
-            lvBrowser.Size = new Size(884, 615);
+            lvBrowser.Size = new Size(884, 588);
             lvBrowser.TabIndex = 1;
             lvBrowser.UseCompatibleStateImageBehavior = false;
+            lvBrowser.SelectedIndexChanged += lvBrowser_SelectedIndexChanged;
+            lvBrowser.DoubleClick += lvBrowser_DoubleClick;
+            lvBrowser.Resize += lvBrowser_Resize;
+            // 
+            // toolStrip
+            // 
+            toolStrip.ImageScalingSize = new Size(20, 20);
+            toolStrip.Items.AddRange(new ToolStripItem[] { tsbBackDirectory, tstActiveDirectory });
+            toolStrip.Location = new Point(0, 28);
+            toolStrip.Name = "toolStrip";
+            toolStrip.Size = new Size(884, 27);
+            toolStrip.TabIndex = 2;
+            toolStrip.Text = "toolStrip1";
+            // 
+            // tsbBackDirectory
+            // 
+            tsbBackDirectory.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbBackDirectory.Image = (Image)resources.GetObject("tsbBackDirectory.Image");
+            tsbBackDirectory.ImageTransparentColor = Color.Magenta;
+            tsbBackDirectory.Name = "tsbBackDirectory";
+            tsbBackDirectory.Size = new Size(29, 24);
+            tsbBackDirectory.Text = "toolStripButton1";
+            tsbBackDirectory.Click += tsbBackDirectory_Click;
+            // 
+            // tstActiveDirectory
+            // 
+            tstActiveDirectory.AutoSize = false;
+            tstActiveDirectory.Name = "tstActiveDirectory";
+            tstActiveDirectory.Size = new Size(100, 27);
+            tstActiveDirectory.KeyPress += tstActiveDirectory_KeyPress;
             // 
             // MainWindow
             // 
@@ -82,12 +118,16 @@ namespace LunaDisc
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(884, 643);
             Controls.Add(lvBrowser);
+            Controls.Add(toolStrip);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "MainWindow";
             Text = "Form1";
+            Load += MainWindow_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            toolStrip.ResumeLayout(false);
+            toolStrip.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -98,5 +138,8 @@ namespace LunaDisc
         private ToolStripMenuItem tsmFile;
         private ToolStripMenuItem tsbOpenImage;
         private ListView lvBrowser;
+        private ToolStrip toolStrip;
+        private ToolStripButton tsbBackDirectory;
+        private ToolStripTextBox tstActiveDirectory;
     }
 }

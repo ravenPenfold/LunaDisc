@@ -16,10 +16,22 @@ namespace LunaDisc
             if (dr == DialogResult.OK)
             {
                 image = new Classes.File.Image(ofd.FileName, Classes.Codes.Types.TYPE_CD_DISC);
+                tstActiveDirectory.Text = "\\";
+                listFiles("\\");
             }
+        }
 
-            List<string> directories = image.getDirectoriesInPath("\\").strings;
-            List<string> files = image.getFilesInPath("\\").strings;
+        private void lvBrowser_Resize(object sender, EventArgs e)
+        {
+            tstActiveDirectory.Width = toolStrip.Width - tsbOpenImage.Width;
+        }
+
+        private void listFiles(string path)
+        {
+            image.path = path;
+            lvBrowser.Clear();
+            List<string> directories = image.getDirectoriesInPath().strings;
+            List<string> files = image.getFilesInPath().strings;
 
             foreach (string dir in directories)
             {
@@ -30,6 +42,55 @@ namespace LunaDisc
             {
                 lvBrowser.Items.Add(file).Group = lvBrowser.Groups[1];
             }
+        }
+
+        private void tstActiveDirectory_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                listFiles(tstActiveDirectory.Text);
+            }
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            tstActiveDirectory.Width = toolStrip.Width - tsbOpenImage.Width;
+        }
+
+        private void lvBrowser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lvBrowser_DoubleClick(object sender, EventArgs e)
+        {
+            if (lvBrowser.SelectedItems.Count != 0)
+            {
+                if (lvBrowser.SelectedItems[0].Group == lvBrowser.Groups[0])
+                {
+                    if (tstActiveDirectory.Text == "\\")
+                    {
+                        tstActiveDirectory.Text = "";
+                    }
+                    tstActiveDirectory.Text = tstActiveDirectory.Text + "\\" + lvBrowser.SelectedItems[0].Text;
+                    listFiles(tstActiveDirectory.Text);
+                }
+            }
+        }
+
+        private void tsbBackDirectory_Click(object sender, EventArgs e)
+        {
+            if(tstActiveDirectory.Text != "\\")
+            {
+                var length = tstActiveDirectory.Text.Split('\\').Last().Length + 1;
+                tstActiveDirectory.Text = tstActiveDirectory.Text.Remove(tstActiveDirectory.Text.Length - length, length);
+            }
+
+            if(tstActiveDirectory.Text == "")
+            {
+                tstActiveDirectory.Text = "\\";
+            }
+            listFiles(tstActiveDirectory.Text);
         }
     }
 }

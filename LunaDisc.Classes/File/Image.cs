@@ -13,6 +13,7 @@ namespace LunaDisc.Classes.File
     {
         // Initialize Global Variables
         public Types fType;
+        public string path;
 
         // Initialize CD Variables
         CDReader cdReader;
@@ -41,10 +42,11 @@ namespace LunaDisc.Classes.File
                     break;
 
             }
+            path = "\\";
             fType = type;
         }
 
-        public Returner getDirectoriesInPath(string path)
+        public Returner getDirectoriesInPath()
         {
             Returner returner = new Returner();
             switch(fType)
@@ -65,7 +67,7 @@ namespace LunaDisc.Classes.File
             }
             return returner;
         }
-        public Returner getFilesInPath(string path)
+        public Returner getFilesInPath()
         {
             Returner returner = new Returner();
             switch (fType)
