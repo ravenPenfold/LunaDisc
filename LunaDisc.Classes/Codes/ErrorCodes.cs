@@ -8,6 +8,9 @@ namespace LunaDisc.Classes.Codes
 {
     public enum ErrorCodes
     {
-        NoError = 0x0000
+        NoError = 0x0000,
+
+        // FileSystem Error
+        fsNotADirectory = 0x0100
     }
 }

@@ -18,6 +18,19 @@ namespace LunaDisc.Classes.File
         CDReader cdReader;
         CDBuilder cdBuilder;
 
+        // for Returning
+        public struct Returner
+        {
+            public List<string> strings;
+            public ErrorCodes errorCode;
+
+            public Returner()
+            {
+                strings = new List<string>();
+                errorCode = new ErrorCodes();
+            }
+        }
+
         // Initaliser
         public Image(string fileName, Types type)
         {
@@ -31,9 +44,48 @@ namespace LunaDisc.Classes.File
             fType = type;
         }
 
-        public ErrorCodes loadDirectory(string path)
+        public Returner getDirectoriesInPath(string path)
         {
-            return ErrorCodes.NoError;
+            Returner returner = new Returner();
+            switch(fType)
+            {
+                case Types.TYPE_CD_DISC:
+                    if (cdReader.DirectoryExists(path))
+                    {
+                        returner.errorCode = ErrorCodes.NoError;
+                        foreach (var dir in cdReader.GetDirectories(path))
+                        {
+                            returner.strings.Add(dir.Split("\\").Last());
+                        }
+                    } else
+                    {
+                        returner.errorCode = ErrorCodes.fsNotADirectory;
+                    }
+                    break;
+            }
+            return returner;
+        }
+        public Returner getFilesInPath(string path)
+        {
+            Returner returner = new Returner();
+            switch (fType)
+            {
+                case Types.TYPE_CD_DISC:
+                    if (cdReader.DirectoryExists(path))
+                    {
+                        returner.errorCode = ErrorCodes.NoError;
+                        foreach (var file in cdReader.GetFiles(path))
+                        {
+                            returner.strings.Add(file.Split("\\").Last());
+                        }
+                    }
+                    else
+                    {
+                        returner.errorCode = ErrorCodes.fsNotADirectory;
+                    }
+                    break;
+            }
+            return returner;
         }
     }
 }
