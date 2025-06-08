@@ -8,4 +8,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LunaDisc.Classes\LunaDisc.Classes.csproj" />
+  </ItemGroup>
+
 </Project>
