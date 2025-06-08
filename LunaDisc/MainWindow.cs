@@ -80,17 +80,33 @@ namespace LunaDisc
 
         private void tsbBackDirectory_Click(object sender, EventArgs e)
         {
-            if(tstActiveDirectory.Text != "\\")
+            if (tstActiveDirectory.Text != "\\")
             {
                 var length = tstActiveDirectory.Text.Split('\\').Last().Length + 1;
                 tstActiveDirectory.Text = tstActiveDirectory.Text.Remove(tstActiveDirectory.Text.Length - length, length);
             }
 
-            if(tstActiveDirectory.Text == "")
+            if (tstActiveDirectory.Text == "")
             {
                 tstActiveDirectory.Text = "\\";
             }
             listFiles(tstActiveDirectory.Text);
+        }
+
+        private void lvBrowser_Click(object sender, MouseEventArgs e)
+        {
+            switch(e.Button)
+            {
+                case MouseButtons.Right:
+                    if (lvBrowser.SelectedItems.Count > 0)
+                    {
+                        if (lvBrowser.SelectedItems[0].Group == lvBrowser.Groups[1])
+                        {
+                            fileContextMenu.Show(MousePosition);
+                        }
+                    }
+                    break;
+            }
         }
     }
 }

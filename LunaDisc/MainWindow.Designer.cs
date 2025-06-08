@@ -30,6 +30,7 @@ namespace LunaDisc
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             ListViewGroup listViewGroup1 = new ListViewGroup("Folders", HorizontalAlignment.Left);
             ListViewGroup listViewGroup2 = new ListViewGroup("Files", HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
@@ -40,8 +41,11 @@ namespace LunaDisc
             toolStrip = new ToolStrip();
             tsbBackDirectory = new ToolStripButton();
             tstActiveDirectory = new ToolStripTextBox();
+            fileContextMenu = new ContextMenuStrip(components);
+            extractFileToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             toolStrip.SuspendLayout();
+            fileContextMenu.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -82,6 +86,7 @@ namespace LunaDisc
             lvBrowser.TabIndex = 1;
             lvBrowser.UseCompatibleStateImageBehavior = false;
             lvBrowser.SelectedIndexChanged += lvBrowser_SelectedIndexChanged;
+            lvBrowser.MouseUp += lvBrowser_Click;
             lvBrowser.DoubleClick += lvBrowser_DoubleClick;
             lvBrowser.Resize += lvBrowser_Resize;
             // 
@@ -112,6 +117,19 @@ namespace LunaDisc
             tstActiveDirectory.Size = new Size(100, 27);
             tstActiveDirectory.KeyPress += tstActiveDirectory_KeyPress;
             // 
+            // fileContextMenu
+            // 
+            fileContextMenu.ImageScalingSize = new Size(20, 20);
+            fileContextMenu.Items.AddRange(new ToolStripItem[] { extractFileToolStripMenuItem });
+            fileContextMenu.Name = "fileContextMenu";
+            fileContextMenu.Size = new Size(151, 28);
+            // 
+            // extractFileToolStripMenuItem
+            // 
+            extractFileToolStripMenuItem.Name = "extractFileToolStripMenuItem";
+            extractFileToolStripMenuItem.Size = new Size(150, 24);
+            extractFileToolStripMenuItem.Text = "Extract File";
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -128,6 +146,7 @@ namespace LunaDisc
             menuStrip1.PerformLayout();
             toolStrip.ResumeLayout(false);
             toolStrip.PerformLayout();
+            fileContextMenu.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -141,5 +160,7 @@ namespace LunaDisc
         private ToolStrip toolStrip;
         private ToolStripButton tsbBackDirectory;
         private ToolStripTextBox tstActiveDirectory;
+        private ContextMenuStrip fileContextMenu;
+        private ToolStripMenuItem extractFileToolStripMenuItem;
     }
 }
