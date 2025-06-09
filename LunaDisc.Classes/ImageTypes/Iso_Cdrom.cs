@@ -6,7 +6,30 @@ namespace LunaDisc.Classes.ImageTypes
 {
     public class Iso_Cdrom
     {
-        public static Returner getFilesInPath(string path, string imagePath)
+        public static ErrorCodes extractFile(string path, string output, string imagePath)  // Extract file from Disc Image
+        {
+            using (FileStream fs = File.Open(imagePath, FileMode.Open))
+            {
+                CDReader cdReader = new CDReader(fs, true);
+                if (cdReader.FileExists(path))
+                {
+                    var read = cdReader.OpenFile(path, FileMode.Open);
+                    var write = new BinaryWriter(new FileStream(output, FileMode.Create));
+                    for (int i = 0; i < cdReader.GetFileInfo(path).Length; i++)
+                    {
+                        write.Write((byte)read.ReadByte());
+                    }
+                    read.Close();
+                    write.Close();
+                }
+                else
+                {
+                    return ErrorCodes.fsNotAFile;
+                }
+            }
+            return ErrorCodes.NoError;
+        }
+        public static Returner getFilesInPath(string path, string imagePath)                // Get Files in Path
         {
             Returner returner = new Returner();
             using (FileStream fs = File.Open(imagePath, FileMode.Open))
@@ -27,7 +50,7 @@ namespace LunaDisc.Classes.ImageTypes
             }
             return returner;
         }
-        public static Returner getDirectoriesInPath(string path, string imagePath)
+        public static Returner getDirectoriesInPath(string path, string imagePath)          // Get Directories in Path
         {
             Returner returner = new Returner();
             using (FileStream fs = File.Open(imagePath, FileMode.Open))

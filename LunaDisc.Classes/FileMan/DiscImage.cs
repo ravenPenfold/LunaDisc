@@ -9,6 +9,7 @@ using DiscUtils;
 using DiscUtils.Iso9660;
 using LunaDisc.Classes.Codes;
 using LunaDisc.Classes.ImageTypes;
+using static LunaDisc.Classes.FileMan.DiscImage;
 
 namespace LunaDisc.Classes.FileMan
 {
@@ -51,7 +52,7 @@ namespace LunaDisc.Classes.FileMan
                     returner = Iso_Cdrom.getDirectoriesInPath(path, actualPath);
                     break;
             }
-            return returner;0
+            return returner;
         }
         public Returner getFilesInPath()
         {
@@ -68,26 +69,14 @@ namespace LunaDisc.Classes.FileMan
         // Extractors
         public ErrorCodes extractFile(string path, string output)
         {
-            using (FileStream fs = File.Open(actualPath, FileMode.Open))
+            ErrorCodes ec = ErrorCodes.NoError;
+            switch (fType)
             {
-                CDReader cdReader = new CDReader(fs, true);
-                if (cdReader.FileExists(path))
-                {
-                    var read = cdReader.OpenFile(path, FileMode.Open);
-                    var write = new BinaryWriter(new FileStream(output, FileMode.Create));
-                    for (int i = 0; i < cdReader.GetFileInfo(path).Length; i++)
-                    {
-                        write.Write((byte)read.ReadByte());
-                    }
-                    read.Close();
-                    write.Close();
-                }
-                else
-                {
-                    return ErrorCodes.fsNotAFile;
-                }
+                case Types.TYPE_CD_DISC:
+                    ec = Iso_Cdrom.extractFile(path, output, actualPath);
+                    break;
             }
-            return ErrorCodes.NoError;
+            return ec;
         }
     }
 }
