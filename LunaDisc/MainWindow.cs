@@ -1,8 +1,10 @@
+using LunaDisc.Classes.FileMan;
+
 namespace LunaDisc
 {
     public partial class MainWindow : Form
     {
-        LunaDisc.Classes.File.Image image;
+        DiscImage image;
         public MainWindow()
         {
             InitializeComponent();
@@ -11,11 +13,14 @@ namespace LunaDisc
         private void tsbOpenImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Multiselect = false;
+            ofd.Filter = "CD-ROM Disc Image|*.iso|" +
+                "All Files|*.*";
             DialogResult dr = ofd.ShowDialog();
 
             if (dr == DialogResult.OK)
             {
-                image = new Classes.File.Image(ofd.FileName, Classes.Codes.Types.TYPE_CD_DISC);
+                image = new DiscImage(ofd.FileName, Classes.Codes.Types.TYPE_CD_DISC);
                 tstActiveDirectory.Text = "\\";
                 listFiles("\\");
             }
@@ -120,5 +125,7 @@ namespace LunaDisc
                 image.extractFile(image.path + "\\" + lvBrowser.SelectedItems[0].Text, sfd.FileName);
             }
         }
+
+
     }
 }
