@@ -6,6 +6,29 @@ namespace LunaDisc.Classes.ImageTypes
 {
     public class Iso_Cdrom
     {
+        // Volume Information
+        public static string getVolumeName(string imagePath)
+        {
+            string s;
+            using (FileStream fs = File.Open(imagePath, FileMode.Open))
+            {
+                CDReader cdReader = new CDReader(fs, true);
+                s = cdReader.VolumeLabel;
+            }
+            return s;
+        }
+
+        // File System
+        public static List<string> tempGetAllFiles(string imagePath)
+        {
+            List<string> s;
+            using (FileStream fs = File.Open(imagePath, FileMode.Open))
+            {
+                CDReader cdReader = new CDReader(fs, true);
+                s = cdReader.GetFileSystemEntries("\\").ToList();
+            }
+            return s;
+        }
         public static ErrorCodes extractFile(string path, string output, string imagePath)  // Extract file from Disc Image
         {
             using (FileStream fs = File.Open(imagePath, FileMode.Open))

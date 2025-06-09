@@ -19,7 +19,7 @@ namespace LunaDisc.Classes.FileMan
         public Types fType;
         public string path;
 
-        private string actualPath;
+        public string actualPath;
 
         // for Returning
         public struct Returner
@@ -40,6 +40,19 @@ namespace LunaDisc.Classes.FileMan
             actualPath = fileName;            
             path = "\\";
             fType = type;
+        }
+
+        // Get volume information
+        public string volumeName()
+        {
+            string s = "No Label";
+            switch (fType)
+            {
+                case Types.TYPE_CD_DISC:
+                    s = Iso_Cdrom.getVolumeName(actualPath);
+                    break;
+            }
+            return s;
         }
 
         // Get files and directories

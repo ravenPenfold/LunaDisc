@@ -1,4 +1,5 @@
 using LunaDisc.Classes.FileMan;
+using LunaDisc.Data;
 using System.Security.Cryptography.X509Certificates;
 
 namespace LunaDisc
@@ -15,6 +16,8 @@ namespace LunaDisc
             lvBrowser.Clear();
             List<string> directories = image.getDirectoriesInPath().strings;
             List<string> files = image.getFilesInPath().strings;
+
+            Text = Locale.appTitle + " - " + image.actualPath.Split("\\").Last() + " (" + image.path + ")";
 
             foreach (string dir in directories)
             {
@@ -50,6 +53,8 @@ namespace LunaDisc
                 image = new DiscImage(ofd.FileName, Classes.Codes.Types.TYPE_CD_DISC);
                 tstActiveDirectory.Text = "\\";
                 listFiles("\\");
+                panVolId.Visible = true;
+                txtVolumeId.Text = image.volumeName();
             }
         }
 
@@ -68,6 +73,13 @@ namespace LunaDisc
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            Text = Locale.appTitle;
+            fileContextMenu.Text = Locale.fileCtxMenu;
+            tsbOpenImage.Text = Locale.openImage;
+            tsbBackDirectory.Text = Locale.upDirectory;
+            lVolumeId.Text = Locale.volumeId;
+            lVolumeInfo.Text = Locale.volumeInfo;
+
             tstActiveDirectory.Width = toolStrip.Width - tsbOpenImage.Width;
         }
 
@@ -134,7 +146,5 @@ namespace LunaDisc
                 image.extractFile(image.path + "\\" + lvBrowser.SelectedItems[0].Text, sfd.FileName);
             }
         }
-
-
     }
 }

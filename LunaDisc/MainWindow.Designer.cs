@@ -44,9 +44,16 @@ namespace LunaDisc
             tstActiveDirectory = new ToolStripTextBox();
             fileContextMenu = new ContextMenuStrip(components);
             extractFileToolStripMenuItem = new ToolStripMenuItem();
+            panVolInfo = new Panel();
+            panVolId = new Panel();
+            txtVolumeId = new TextBox();
+            lVolumeId = new Label();
+            lVolumeInfo = new Label();
             menuStrip1.SuspendLayout();
             toolStrip.SuspendLayout();
             fileContextMenu.SuspendLayout();
+            panVolInfo.SuspendLayout();
+            panVolId.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -55,7 +62,7 @@ namespace LunaDisc
             menuStrip1.Items.AddRange(new ToolStripItem[] { tsmFile });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(884, 28);
+            menuStrip1.Size = new Size(1036, 28);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -82,9 +89,9 @@ namespace LunaDisc
             listViewGroup2.Name = "gpFiles";
             lvBrowser.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2 });
             lvBrowser.LargeImageList = BrowserImages;
-            lvBrowser.Location = new Point(0, 55);
+            lvBrowser.Location = new Point(305, 55);
             lvBrowser.Name = "lvBrowser";
-            lvBrowser.Size = new Size(884, 588);
+            lvBrowser.Size = new Size(731, 588);
             lvBrowser.SmallImageList = BrowserImages;
             lvBrowser.TabIndex = 1;
             lvBrowser.UseCompatibleStateImageBehavior = false;
@@ -107,7 +114,7 @@ namespace LunaDisc
             toolStrip.Items.AddRange(new ToolStripItem[] { tsbBackDirectory, tstActiveDirectory });
             toolStrip.Location = new Point(0, 28);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(884, 27);
+            toolStrip.Size = new Size(1036, 27);
             toolStrip.TabIndex = 2;
             toolStrip.Text = "toolStrip1";
             // 
@@ -142,12 +149,61 @@ namespace LunaDisc
             extractFileToolStripMenuItem.Text = "Extract File";
             extractFileToolStripMenuItem.Click += extractFileToolStripMenuItem_Click;
             // 
+            // panVolInfo
+            // 
+            panVolInfo.Controls.Add(panVolId);
+            panVolInfo.Controls.Add(lVolumeInfo);
+            panVolInfo.Dock = DockStyle.Left;
+            panVolInfo.Location = new Point(0, 55);
+            panVolInfo.Name = "panVolInfo";
+            panVolInfo.Size = new Size(305, 588);
+            panVolInfo.TabIndex = 3;
+            // 
+            // panVolId
+            // 
+            panVolId.Controls.Add(txtVolumeId);
+            panVolId.Controls.Add(lVolumeId);
+            panVolId.Dock = DockStyle.Top;
+            panVolId.Location = new Point(0, 32);
+            panVolId.Name = "panVolId";
+            panVolId.Size = new Size(305, 41);
+            panVolId.TabIndex = 5;
+            panVolId.Visible = false;
+            // 
+            // txtVolumeId
+            // 
+            txtVolumeId.Location = new Point(97, 6);
+            txtVolumeId.Name = "txtVolumeId";
+            txtVolumeId.Size = new Size(202, 27);
+            txtVolumeId.TabIndex = 1;
+            // 
+            // lVolumeId
+            // 
+            lVolumeId.AutoSize = true;
+            lVolumeId.Location = new Point(12, 9);
+            lVolumeId.Name = "lVolumeId";
+            lVolumeId.Size = new Size(76, 20);
+            lVolumeId.TabIndex = 0;
+            lVolumeId.Text = "lVolumeId";
+            // 
+            // lVolumeInfo
+            // 
+            lVolumeInfo.AutoSize = true;
+            lVolumeInfo.Dock = DockStyle.Top;
+            lVolumeInfo.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Italic);
+            lVolumeInfo.Location = new Point(0, 0);
+            lVolumeInfo.Name = "lVolumeInfo";
+            lVolumeInfo.Size = new Size(105, 32);
+            lVolumeInfo.TabIndex = 4;
+            lVolumeInfo.Text = "lVolInfo";
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(884, 643);
+            ClientSize = new Size(1036, 643);
             Controls.Add(lvBrowser);
+            Controls.Add(panVolInfo);
             Controls.Add(toolStrip);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
@@ -159,6 +215,10 @@ namespace LunaDisc
             toolStrip.ResumeLayout(false);
             toolStrip.PerformLayout();
             fileContextMenu.ResumeLayout(false);
+            panVolInfo.ResumeLayout(false);
+            panVolInfo.PerformLayout();
+            panVolId.ResumeLayout(false);
+            panVolId.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -175,5 +235,10 @@ namespace LunaDisc
         private ContextMenuStrip fileContextMenu;
         private ToolStripMenuItem extractFileToolStripMenuItem;
         private ImageList BrowserImages;
+        private Panel panVolInfo;
+        private Panel panVolId;
+        private TextBox txtVolumeId;
+        private Label lVolumeId;
+        private Label lVolumeInfo;
     }
 }
