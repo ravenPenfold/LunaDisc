@@ -38,6 +38,7 @@ namespace LunaDisc
             tsmFile = new ToolStripMenuItem();
             tsbOpenImage = new ToolStripMenuItem();
             lvBrowser = new ListView();
+            BrowserImages = new ImageList(components);
             toolStrip = new ToolStrip();
             tsbBackDirectory = new ToolStripButton();
             tstActiveDirectory = new ToolStripTextBox();
@@ -80,15 +81,25 @@ namespace LunaDisc
             listViewGroup2.Header = "Files";
             listViewGroup2.Name = "gpFiles";
             lvBrowser.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2 });
+            lvBrowser.LargeImageList = BrowserImages;
             lvBrowser.Location = new Point(0, 55);
             lvBrowser.Name = "lvBrowser";
             lvBrowser.Size = new Size(884, 588);
+            lvBrowser.SmallImageList = BrowserImages;
             lvBrowser.TabIndex = 1;
             lvBrowser.UseCompatibleStateImageBehavior = false;
             lvBrowser.SelectedIndexChanged += lvBrowser_SelectedIndexChanged;
             lvBrowser.DoubleClick += lvBrowser_DoubleClick;
             lvBrowser.MouseUp += lvBrowser_Click;
             lvBrowser.Resize += lvBrowser_Resize;
+            // 
+            // BrowserImages
+            // 
+            BrowserImages.ColorDepth = ColorDepth.Depth32Bit;
+            BrowserImages.ImageStream = (ImageListStreamer)resources.GetObject("BrowserImages.ImageStream");
+            BrowserImages.TransparentColor = Color.Transparent;
+            BrowserImages.Images.SetKeyName(0, "shell32.dll_14_4.ico");
+            BrowserImages.Images.SetKeyName(1, "shell32.dll_14_1.ico");
             // 
             // toolStrip
             // 
@@ -122,12 +133,12 @@ namespace LunaDisc
             fileContextMenu.ImageScalingSize = new Size(20, 20);
             fileContextMenu.Items.AddRange(new ToolStripItem[] { extractFileToolStripMenuItem });
             fileContextMenu.Name = "fileContextMenu";
-            fileContextMenu.Size = new Size(211, 56);
+            fileContextMenu.Size = new Size(151, 28);
             // 
             // extractFileToolStripMenuItem
             // 
             extractFileToolStripMenuItem.Name = "extractFileToolStripMenuItem";
-            extractFileToolStripMenuItem.Size = new Size(210, 24);
+            extractFileToolStripMenuItem.Size = new Size(150, 24);
             extractFileToolStripMenuItem.Text = "Extract File";
             extractFileToolStripMenuItem.Click += extractFileToolStripMenuItem_Click;
             // 
@@ -163,5 +174,6 @@ namespace LunaDisc
         private ToolStripTextBox tstActiveDirectory;
         private ContextMenuStrip fileContextMenu;
         private ToolStripMenuItem extractFileToolStripMenuItem;
+        private ImageList BrowserImages;
     }
 }

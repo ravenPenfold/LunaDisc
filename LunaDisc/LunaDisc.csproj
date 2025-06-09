@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LunaDisc.Classes\LunaDisc.Classes.csproj" />
+    <ProjectReference Include="..\LunaDisc.Data\LunaDisc.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
