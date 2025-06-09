@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using DiscUtils;
 using DiscUtils.Iso9660;
 using LunaDisc.Classes.Codes;
+using LunaDisc.Classes.ImageTypes;
 
 namespace LunaDisc.Classes.FileMan
 {
@@ -18,8 +19,6 @@ namespace LunaDisc.Classes.FileMan
         public string path;
 
         private string actualPath;
-
-        // Initialize CD Variables
 
         // for Returning
         public struct Returner
@@ -46,53 +45,22 @@ namespace LunaDisc.Classes.FileMan
         public Returner getDirectoriesInPath()
         {
             Returner returner = new Returner();
-            using (FileStream fs = File.Open(actualPath, FileMode.Open))
+            switch (fType)
             {
-                CDReader cdReader = new CDReader(fs, true);
-                switch (fType)
-                {
-                    case Types.TYPE_CD_DISC:
-                        if (cdReader.DirectoryExists(path))
-                        {
-                            returner.errorCode = ErrorCodes.NoError;
-                            foreach (var dir in cdReader.GetDirectories(path))
-                            {
-                                returner.strings.Add(dir.Split("\\").Last());   // Returns only the LAST part of a fullDirectory string
-                            }
-                        }
-                        else
-                        {
-                            returner.errorCode = ErrorCodes.fsNotADirectory;
-                        }
-                        break;
-                }
+                case Types.TYPE_CD_DISC:
+                    returner = Iso_Cdrom.getDirectoriesInPath(path, actualPath);
+                    break;
             }
-            return returner;
+            return returner;0
         }
         public Returner getFilesInPath()
         {
             Returner returner = new Returner();
-            using(FileStream fs = File.Open(actualPath,FileMode.Open))
+            switch (fType)
             {
-                CDReader cdReader = new CDReader(fs, true);
-                switch (fType)
-                {
-                    case Types.TYPE_CD_DISC:
-                        if (cdReader.DirectoryExists(path))
-                        {
-                            returner.errorCode = ErrorCodes.NoError;
-                            foreach (var file in cdReader.GetFiles(path))
-                            {
-                                returner.strings.Add(file.Split("\\").Last());
-                            }
-                        }
-                        else
-                        {
-                            returner.errorCode = ErrorCodes.fsNotADirectory;
-                        }
-                        break;
-                }
-
+                case Types.TYPE_CD_DISC:
+                    returner = Iso_Cdrom.getFilesInPath(path, actualPath);
+                    break;
             }
             return returner;
         }
