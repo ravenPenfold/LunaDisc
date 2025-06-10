@@ -250,6 +250,10 @@ namespace LunaDisc
             DialogResult dr = sfd.ShowDialog();
             if (dr == DialogResult.OK)
             {
+                if(File.Exists(sfd.FileName))
+                {
+                    File.Delete(sfd.FileName);
+                }
                 image.actualPath = sfd.FileName;
                 image.buildImage(txtVolumeId.Text);
             }
