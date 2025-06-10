@@ -98,6 +98,7 @@ namespace LunaDisc
             // createADiskImageToolStripMenuItem
             // 
             createADiskImageToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cDROMImageisoToolStripMenuItem });
+            createADiskImageToolStripMenuItem.Image = Properties.Resources.New;
             createADiskImageToolStripMenuItem.Name = "createADiskImageToolStripMenuItem";
             createADiskImageToolStripMenuItem.Size = new Size(178, 22);
             createADiskImageToolStripMenuItem.Text = "Create a Disk Image";
@@ -112,6 +113,7 @@ namespace LunaDisc
             // 
             // tsbOpenImage
             // 
+            tsbOpenImage.Image = Properties.Resources.Folder;
             tsbOpenImage.Name = "tsbOpenImage";
             tsbOpenImage.Size = new Size(178, 22);
             tsbOpenImage.Text = "Open Image";
@@ -119,6 +121,7 @@ namespace LunaDisc
             // 
             // saveImageToolStripMenuItem
             // 
+            saveImageToolStripMenuItem.Image = Properties.Resources.Save;
             saveImageToolStripMenuItem.Name = "saveImageToolStripMenuItem";
             saveImageToolStripMenuItem.Size = new Size(178, 22);
             saveImageToolStripMenuItem.Text = "Save Image";
@@ -174,6 +177,7 @@ namespace LunaDisc
             lvBrowser.Name = "lvBrowser";
             lvBrowser.Size = new Size(639, 431);
             lvBrowser.SmallImageList = BrowserImages;
+            lvBrowser.Sorting = SortOrder.Ascending;
             lvBrowser.TabIndex = 1;
             lvBrowser.UseCompatibleStateImageBehavior = false;
             lvBrowser.SelectedIndexChanged += lvBrowser_SelectedIndexChanged;
@@ -186,10 +190,8 @@ namespace LunaDisc
             BrowserImages.ColorDepth = ColorDepth.Depth32Bit;
             BrowserImages.ImageStream = (ImageListStreamer)resources.GetObject("BrowserImages.ImageStream");
             BrowserImages.TransparentColor = Color.Transparent;
-            BrowserImages.Images.SetKeyName(0, "shell32.dll_14_4.ico");
-            BrowserImages.Images.SetKeyName(1, "shell32.dll_14_1.ico");
-            BrowserImages.Images.SetKeyName(2, "shell32.dll_14_146.ico");
-            BrowserImages.Images.SetKeyName(3, "shell32.dll_14_151.ico");
+            BrowserImages.Images.SetKeyName(0, "Folder.png");
+            BrowserImages.Images.SetKeyName(1, "File.png");
             // 
             // toolStrip
             // 
@@ -204,7 +206,7 @@ namespace LunaDisc
             // tsbBackDirectory
             // 
             tsbBackDirectory.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            tsbBackDirectory.Image = (Image)resources.GetObject("tsbBackDirectory.Image");
+            tsbBackDirectory.Image = Properties.Resources.Back;
             tsbBackDirectory.ImageTransparentColor = Color.Magenta;
             tsbBackDirectory.Name = "tsbBackDirectory";
             tsbBackDirectory.Size = new Size(24, 24);

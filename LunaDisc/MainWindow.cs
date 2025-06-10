@@ -114,6 +114,7 @@ namespace LunaDisc
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            lvBrowser.View = View.Tile;
             if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc") == false)
             {
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc");
@@ -224,7 +225,7 @@ namespace LunaDisc
             {
                 saveAs();
             }
-            else if (image.actualPath == Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\temp.bin")
+            else if (image.actualPath == image.tempPath)
             {
                 saveAs();
             }
