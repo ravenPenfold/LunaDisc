@@ -220,7 +220,7 @@ namespace LunaDisc
             {
                 saveAs();
             }
-            else if (image.actualPath == "New Image")
+            else if (image.actualPath == Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\temp.bin")
             {
                 saveAs();
             }

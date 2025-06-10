@@ -58,8 +58,8 @@ namespace LunaDisc.Classes.FileMan
             path = "\\";
             fType = type;
             dataToWrite = new List<FileWriting>();
-            actualPath = "New Image";
-            // buildImage(volumeName);
+            actualPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\temp.bin";
+            newImage(volumeName);
         }
 
         // Get volume information
@@ -77,6 +77,15 @@ namespace LunaDisc.Classes.FileMan
 
         // Builders
 
+        public void newImage(string volumeName)
+        {
+            switch (fType)
+            {
+                case Types.TYPE_CD_DISC:
+                    Iso_Cdrom.generateNewImage(actualPath, volumeName);
+                    break;
+            }
+        }
 
         public void buildImage(string volumeName)
         {

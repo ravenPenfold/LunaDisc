@@ -11,6 +11,14 @@ namespace LunaDisc.Classes.ImageTypes
     public class Iso_Cdrom
     {
         // Image Builder
+        public static void generateNewImage(string imagePath, string volumeId)
+        {
+            CDBuilder cdBuilder = new CDBuilder();
+            cdBuilder.VolumeIdentifier = volumeId;
+            cdBuilder.UseJoliet = true;
+            cdBuilder.Build(imagePath);
+        }
+
         public static void buildImage(string imagePath, string volumeId, List<DiscImage.FileWriting> data)
         {
             if (File.Exists(imagePath))
