@@ -45,6 +45,33 @@ namespace LunaDisc
                 lvBrowser.Items[i].Group = lvBrowser.Groups[(int)Data.BrowserIndexes.File];
                 lvBrowser.Items[i].ImageIndex = (int)Data.BrowserIndexes.File;
             }
+
+            foreach (var info in image.dataToWrite)
+            {
+                if (info.fileLocation.StartsWith(path) == true)
+                {
+                    if (info.fileLocation.EndsWith(path) == false)
+                    {
+                        int i;
+                        switch (info.isDirectory)
+                        {
+                            case true:
+                                i = lvBrowser.Items.Add(info.fileLocation.Split("\\").Last()).Index;
+                                lvBrowser.Items[i].Group = lvBrowser.Groups[(int)Data.BrowserIndexes.Folder];
+                                lvBrowser.Items[i].ImageIndex = (int)Data.BrowserIndexes.Folder;
+                                lvBrowser.Items[i].ForeColor = Color.Red;
+                                break;
+                            case false:
+                                i = lvBrowser.Items.Add(info.fileLocation.Split("\\").Last()).Index;
+                                lvBrowser.Items[i].Group = lvBrowser.Groups[(int)Data.BrowserIndexes.File];
+                                lvBrowser.Items[i].ImageIndex = (int)Data.BrowserIndexes.File;
+                                lvBrowser.Items[i].ForeColor = Color.Red;
+                                break;
+                        }
+                    }
+                }
+            }
+
             panProgress.Visible = false;
         }
 
@@ -200,10 +227,9 @@ namespace LunaDisc
             else
             {
 
-                image.saveImage(image.actualPath);
+                image.buildImage(txtVolumeId.Text);
+                listFiles(image.path);
             }
-
-
         }
 
         public void saveAs()
@@ -219,8 +245,10 @@ namespace LunaDisc
             DialogResult dr = sfd.ShowDialog();
             if (dr == DialogResult.OK)
             {
-                image.saveImage(sfd.FileName);
+                image.actualPath = sfd.FileName;
+                image.buildImage(txtVolumeId.Text);
             }
+            listFiles(image.path);
         }
 
         private void createADiskImageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -253,7 +281,7 @@ namespace LunaDisc
             DialogResult dr = ofd.ShowDialog();
             if (dr == DialogResult.OK)
             {
-                image.addFile(ofd.FileName, image.path);
+                image.addFile(ofd.FileName, image.path + "\\" + ofd.FileName.Split("\\").Last());
                 listFiles(image.path);
             }
         }
@@ -262,8 +290,8 @@ namespace LunaDisc
         {
             RenameDialog rd = new RenameDialog();
             rd.rename = false;
-            rd.ShowDialog();
-            if (rd.DialogResult == DialogResult.OK)
+            DialogResult r = rd.ShowDialog();
+            if (r == DialogResult.OK)
             {
                 image.addDirectory(rd.name);
                 listFiles(image.path);

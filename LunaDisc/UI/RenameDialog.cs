@@ -46,13 +46,11 @@ namespace LunaDisc.UI
         private void bOk_Click(object sender, EventArgs e)
         {
             name = tName.Text;
-            result = DialogResult.OK;
             Close();
         }
 
         private void bCancel_Click(object sender, EventArgs e)
         {
-            result = DialogResult.Cancel;
             Close();
         }
     }

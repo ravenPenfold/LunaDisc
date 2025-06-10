@@ -36,6 +36,7 @@
             // 
             // bOk
             // 
+            bOk.DialogResult = DialogResult.OK;
             bOk.Location = new Point(343, 56);
             bOk.Name = "bOk";
             bOk.Size = new Size(75, 23);
@@ -63,6 +64,7 @@
             // 
             // bCancel
             // 
+            bCancel.DialogResult = DialogResult.Cancel;
             bCancel.Location = new Point(262, 56);
             bCancel.Name = "bCancel";
             bCancel.Size = new Size(75, 23);
@@ -71,7 +73,7 @@
             bCancel.UseVisualStyleBackColor = true;
             bCancel.Click += bCancel_Click;
             // 
-            // Rename
+            // RenameDialog
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -80,7 +82,7 @@
             Controls.Add(lDesc);
             Controls.Add(tName);
             Controls.Add(bOk);
-            Name = "Rename";
+            Name = "RenameDialog";
             Text = "Rename";
             Load += Rename_Load;
             ResumeLayout(false);

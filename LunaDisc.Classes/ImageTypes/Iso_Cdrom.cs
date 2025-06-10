@@ -1,95 +1,81 @@
 ﻿using DiscUtils.Iso9660;
 using LunaDisc.Classes.Codes;
+using LunaDisc.Classes.FileMan;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using static LunaDisc.Classes.FileMan.DiscImage;
 
 namespace LunaDisc.Classes.ImageTypes
 {
     public class Iso_Cdrom
     {
-        // Create Image
-
-        /*
-        public static CDBuilder makeBaseImage(CDBuilder cdBuilder, CDReader cdReader)
-        {
-            List<string> directories = new List<string>();
-            directories.Add("\\");
-            int i = 0;
-            while (true)
-            {
-                if (directories.Count != i)
-                {
-                    Debug.Write(directories[i]);
-                    foreach (var dir in cdReader.GetDirectories(directories[i])) // Loop through & add each directory to a list
-                    {
-                        directories.Add(dir);
-                    }
-                }
-                else
-                {
-                    break;
-                }
-                i++;
-            }
-            foreach (string dir in directories)     // Add directories and files
-            {
-                cdBuilder.AddDirectory(dir);
-                foreach (var file in cdReader.GetFiles(dir))
-                {
-                    Debug.WriteLine(file);
-                    cdBuilder.AddFile(file.Split(";").First(), cdReader.OpenFile(file, FileMode.Open));
-                }
-            }
-            return cdBuilder;
-        }
-        public static void saveImage(string imagePath, string volumeId) // Saves the Disc Image
+        // Image Builder
+        public static void buildImage(string imagePath, string volumeId, List<DiscImage.FileWriting> data)
         {
             if (File.Exists(imagePath))
             {
-                File.Move(imagePath, Environment.SpecialFolder.ApplicationData + "\\LunaDisc.tmp", true);          // File exists, create a temporary copy to work with
+                File.Move(imagePath, imagePath + ".tmp");
+                using (FileStream fs = new FileStream(imagePath + ".tmp", FileMode.Open))
+                {
+                    CDReader cdReader = new CDReader(fs, true);
+                    List<string> directories = new List<string>();
+                    directories.Add("\\");
+                    int i = 0;
+                    while (true)
+                    {
+                        if (directories.Count != i)
+                        {
+                            Debug.Write(directories[i]);
+                            foreach (var dir in cdReader.GetDirectories(directories[i])) // Loop through & add each directory to a list
+                            {
+                                directories.Add(dir);
+                            }
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        i++;
+                    }
+                    foreach (string dir in directories)     // Add directories and files
+                    {
+                        data.Add(new FileWriting(dir, true, [0]));
+                        foreach (var file in cdReader.GetFiles(dir))
+                        {
+                            Debug.WriteLine(file);
+                            data.Add(new FileWriting(file, false, new byte[cdReader.GetFileLength(file)]));
+                            var read = cdReader.OpenFile(file, FileMode.Open);
+
+                            for (int j = 0; i < cdReader.GetFileInfo(file).Length; i++)
+                            {
+                                data.Last().data[i] = (byte)read.ReadByte();
+                            }
+                            read.Close();
+                        }
+                    }
+                }
+                File.Delete(imagePath + ".tmp");
             }
+
             CDBuilder cdBuilder = new CDBuilder();
             cdBuilder.UseJoliet = true;
             cdBuilder.VolumeIdentifier = volumeId;
 
-            cdBuilder.Build(imagePath);     // Finished
+            foreach(DiscImage.FileWriting w in data)
+            {
+                if(w.isDirectory == true)
+                {
+                    cdBuilder.AddDirectory(w.fileLocation);
+                } else
+                {
+                    cdBuilder.AddFile(w.fileLocation, w.data);
+                }
+            }
+
+            cdBuilder.Build(imagePath);
+            Debug.WriteLine("Finished Exporting");
         }
-
-        public static void saveImage(string imagePath, string volumeId, string directory)
-        {
-            CDBuilder cdBuilder = new CDBuilder();
-            cdBuilder.UseJoliet = true;
-            cdBuilder.VolumeIdentifier = volumeId;
-            using (FileStream fs = File.Open(imagePath, FileMode.Open))
-            {
-                CDReader cdReader = new CDReader(fs, true);
-
-                cdBuilder = makeBaseImage(cdBuilder, cdReader);
-                cdBuilder.AddDirectory(directory);
-                cdBuilder.Build(imagePath);     // Finished
-            }
-        }
-
-        public static void saveImage(string imagePath, string volumeId, string file, byte[] fileData)
-        {
-
-            CDBuilder cdBuilder = new CDBuilder();
-            cdBuilder.UseJoliet = true;
-            cdBuilder.VolumeIdentifier = volumeId;
-            File.Copy(imagePath, imagePath + ".old");
-            using (FileStream fs = File.Open(imagePath + ".old", FileMode.Open))
-            {
-                CDReader cdReader = new CDReader(fs, true);
-                cdBuilder = makeBaseImage(cdBuilder, cdReader);
-                cdBuilder.AddFile(file, fileData);
-            }
-
-            using (FileStream fs = File.Open(imagePath, FileMode.Create))
-            {
-                cdBuilder.Build(fs);
-            }
-            File.Delete(imagePath + ".old");
-        } */
 
         // Volume Information
         public static string getVolumeName(string imagePath)
