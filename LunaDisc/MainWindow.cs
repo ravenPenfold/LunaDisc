@@ -1,8 +1,9 @@
+using LunaDisc.Classes.Codes;
 using LunaDisc.Classes.FileMan;
 using LunaDisc.Data;
 using LunaDisc.UI.Info;
 using System.Diagnostics;
-using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography;
 
 namespace LunaDisc
 {
@@ -179,7 +180,56 @@ namespace LunaDisc
 
         private void saveImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            image.buildImage(txtVolumeId.Text);
+            if (image.actualPath == null)
+            {
+                saveAs();
+            } else if (image.actualPath == "New Image")
+            {
+                saveAs();
+            }
+            else
+            {
+
+                image.saveImage(image.actualPath);
+            }
+
+
+        }
+
+        public void saveAs()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            switch (image.fType)
+            {
+                case Types.TYPE_CD_DISC:
+                    sfd.Filter = "CD-ROM Disc Image|*.iso|" +
+                        "All Files|*.*";
+                    break;
+            }
+            DialogResult dr = sfd.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                image.saveImage(sfd.FileName);
+            }
+        }
+
+        private void createADiskImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cDROMImageisoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panVolId.Visible = true;
+            txtVolumeId.Text = "NEW_IMAGE";
+            image = new DiscImage(Types.TYPE_CD_DISC, txtVolumeId.Text);
+
+            listFiles("\\");
+        }
+
+        private void saveImageAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveAs();
         }
     }
 }

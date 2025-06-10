@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using DiscUtils;
-using DiscUtils.Iso9660;
-using LunaDisc.Classes.Codes;
+﻿using LunaDisc.Classes.Codes;
 using LunaDisc.Classes.ImageTypes;
-using static LunaDisc.Classes.FileMan.DiscImage;
+using System.Reflection;
 
 namespace LunaDisc.Classes.FileMan
 {
@@ -19,6 +10,7 @@ namespace LunaDisc.Classes.FileMan
         public Types fType;
         public string path;
 
+        public string tempFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc.tmp";
         public string actualPath;
 
         // for Returning
@@ -37,9 +29,19 @@ namespace LunaDisc.Classes.FileMan
         // Initaliser
         public DiscImage(string fileName, Types type)
         {
-            actualPath = fileName;            
+            actualPath = fileName;
+            File.Copy(actualPath, tempFile, true);
             path = "\\";
             fType = type;
+        }
+
+        public DiscImage(Types type, string volumeName)
+        {
+            path = "\\";
+            fType = type;
+
+            actualPath = "New Image";
+            buildImage(volumeName);
         }
 
         // Get volume information
@@ -49,7 +51,7 @@ namespace LunaDisc.Classes.FileMan
             switch (fType)
             {
                 case Types.TYPE_CD_DISC:
-                    s = Iso_Cdrom.getVolumeName(actualPath);
+                    s = Iso_Cdrom.getVolumeName(tempFile);
                     break;
             }
             return s;
@@ -61,9 +63,37 @@ namespace LunaDisc.Classes.FileMan
             switch (fType)
             {
                 case Types.TYPE_CD_DISC:
-                    Iso_Cdrom.saveImage(actualPath, volumeName);
+                    Iso_Cdrom.saveImage(tempFile, volumeName);
                     break;
             }
+        }
+
+        public void addFile(string file, string path)
+        {
+            if (File.Exists(file))
+            {
+                switch (fType)
+                {
+                    case Types.TYPE_CD_DISC:
+                        Iso_Cdrom.saveImage(tempFile, volumeName(), path + file.Split("\\").Last(), File.ReadAllBytes(file));
+                        break;
+                }
+            }
+        }
+
+        public void addDirectory(string directory)
+        {
+            switch (fType)
+            {
+                case Types.TYPE_CD_DISC:
+                    Iso_Cdrom.saveImage(tempFile, volumeName(), directory);
+                    break;
+            }
+        }
+
+        public void saveImage(string outPath)
+        {
+            File.Copy(tempFile, outPath, true);
         }
 
         // Get files and directories
@@ -73,7 +103,7 @@ namespace LunaDisc.Classes.FileMan
             switch (fType)
             {
                 case Types.TYPE_CD_DISC:
-                    returner = Iso_Cdrom.getDirectoriesInPath(path, actualPath);
+                    returner = Iso_Cdrom.getDirectoriesInPath(path, tempFile);
                     break;
             }
             return returner;
@@ -84,7 +114,7 @@ namespace LunaDisc.Classes.FileMan
             switch (fType)
             {
                 case Types.TYPE_CD_DISC:
-                    returner = Iso_Cdrom.getFilesInPath(path, actualPath);
+                    returner = Iso_Cdrom.getFilesInPath(path, tempFile);
                     break;
             }
             return returner;
@@ -97,7 +127,7 @@ namespace LunaDisc.Classes.FileMan
             switch (fType)
             {
                 case Types.TYPE_CD_DISC:
-                    ec = Iso_Cdrom.extractFile(path, output, actualPath);
+                    ec = Iso_Cdrom.extractFile(path, output, tempFile);
                     break;
             }
             return ec;
