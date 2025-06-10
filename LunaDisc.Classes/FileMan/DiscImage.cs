@@ -14,7 +14,8 @@ namespace LunaDisc.Classes.FileMan
 
         public List<FileWriting> dataToWrite;
         public string actualPath;
-        
+        public string tempPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc\\New Image.bin";
+
         // for use when saving
         public struct FileWriting
         {
@@ -58,7 +59,7 @@ namespace LunaDisc.Classes.FileMan
             path = "\\";
             fType = type;
             dataToWrite = new List<FileWriting>();
-            actualPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\temp.bin";
+            actualPath = tempPath;
             newImage(volumeName);
         }
 
@@ -73,6 +74,15 @@ namespace LunaDisc.Classes.FileMan
                     break;
             }
             return s;
+        }
+
+        // Cleanup Temp ISO
+        public void cleanUp()
+        {
+            if (File.Exists(tempPath))
+            {
+                File.Delete(tempPath);
+            }
         }
 
         // Builders
@@ -96,6 +106,7 @@ namespace LunaDisc.Classes.FileMan
                     break;
             }
             dataToWrite = new List<FileWriting>();
+            cleanUp();
         }
 
         public void addFile(string file, string path)

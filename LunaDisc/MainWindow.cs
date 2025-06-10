@@ -114,6 +114,10 @@ namespace LunaDisc
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc") == false)
+            {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc");
+            }
             Text = Locale.appTitle;
             fileContextMenu.Text = Locale.fileCtxMenu;
             tsbOpenImage.Text = Locale.openImage;
@@ -296,6 +300,11 @@ namespace LunaDisc
                 image.addDirectory(rd.name);
                 listFiles(image.path);
             }
+        }
+
+        private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            image.cleanUp();
         }
     }
 }

@@ -99,7 +99,7 @@ namespace LunaDisc
             // 
             createADiskImageToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cDROMImageisoToolStripMenuItem });
             createADiskImageToolStripMenuItem.Name = "createADiskImageToolStripMenuItem";
-            createADiskImageToolStripMenuItem.Size = new Size(180, 22);
+            createADiskImageToolStripMenuItem.Size = new Size(178, 22);
             createADiskImageToolStripMenuItem.Text = "Create a Disk Image";
             createADiskImageToolStripMenuItem.Click += createADiskImageToolStripMenuItem_Click;
             // 
@@ -113,33 +113,33 @@ namespace LunaDisc
             // tsbOpenImage
             // 
             tsbOpenImage.Name = "tsbOpenImage";
-            tsbOpenImage.Size = new Size(180, 22);
+            tsbOpenImage.Size = new Size(178, 22);
             tsbOpenImage.Text = "Open Image";
             tsbOpenImage.Click += tsbOpenImage_Click;
             // 
             // saveImageToolStripMenuItem
             // 
             saveImageToolStripMenuItem.Name = "saveImageToolStripMenuItem";
-            saveImageToolStripMenuItem.Size = new Size(180, 22);
+            saveImageToolStripMenuItem.Size = new Size(178, 22);
             saveImageToolStripMenuItem.Text = "Save Image";
             saveImageToolStripMenuItem.Click += saveImageToolStripMenuItem_Click;
             // 
             // saveImageAsToolStripMenuItem
             // 
             saveImageAsToolStripMenuItem.Name = "saveImageAsToolStripMenuItem";
-            saveImageAsToolStripMenuItem.Size = new Size(180, 22);
+            saveImageAsToolStripMenuItem.Size = new Size(178, 22);
             saveImageAsToolStripMenuItem.Text = "Save Image As...";
             saveImageAsToolStripMenuItem.Click += saveImageAsToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(177, 6);
+            toolStripSeparator1.Size = new Size(175, 6);
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(178, 22);
             exitToolStripMenuItem.Text = "Exit";
             // 
             // helpToolStripMenuItem
@@ -365,6 +365,7 @@ namespace LunaDisc
             Margin = new Padding(3, 2, 3, 2);
             Name = "MainWindow";
             Text = "Form1";
+            FormClosed += MainWindow_FormClosed;
             Load += MainWindow_Load;
             fileMenu.ResumeLayout(false);
             fileMenu.PerformLayout();
