@@ -55,6 +55,17 @@ namespace LunaDisc.Classes.FileMan
             return s;
         }
 
+        // Builders
+        public void buildImage(string volumeName)
+        {
+            switch (fType)
+            {
+                case Types.TYPE_CD_DISC:
+                    Iso_Cdrom.saveImage(actualPath, volumeName);
+                    break;
+            }
+        }
+
         // Get files and directories
         public Returner getDirectoriesInPath()
         {

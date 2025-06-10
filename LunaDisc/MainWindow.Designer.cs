@@ -34,9 +34,10 @@ namespace LunaDisc
             ListViewGroup listViewGroup1 = new ListViewGroup("Folders", HorizontalAlignment.Left);
             ListViewGroup listViewGroup2 = new ListViewGroup("Files", HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            menuStrip1 = new MenuStrip();
+            fileMenu = new MenuStrip();
             tsmFile = new ToolStripMenuItem();
             tsbOpenImage = new ToolStripMenuItem();
+            saveImageToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
             lvBrowser = new ListView();
@@ -54,7 +55,7 @@ namespace LunaDisc
             txtVolumeId = new TextBox();
             lVolumeId = new Label();
             lVolumeInfo = new Label();
-            menuStrip1.SuspendLayout();
+            fileMenu.SuspendLayout();
             toolStrip.SuspendLayout();
             fileContextMenu.SuspendLayout();
             panVolInfo.SuspendLayout();
@@ -62,20 +63,21 @@ namespace LunaDisc
             panVolId.SuspendLayout();
             SuspendLayout();
             // 
-            // menuStrip1
+            // fileMenu
             // 
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { tsmFile, helpToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(5, 2, 0, 2);
-            menuStrip1.Size = new Size(906, 24);
-            menuStrip1.TabIndex = 0;
-            menuStrip1.Text = "menuStrip1";
+            fileMenu.ImageScalingSize = new Size(20, 20);
+            fileMenu.Items.AddRange(new ToolStripItem[] { tsmFile, helpToolStripMenuItem });
+            fileMenu.Location = new Point(0, 0);
+            fileMenu.Name = "fileMenu";
+            fileMenu.Padding = new Padding(5, 2, 0, 2);
+            fileMenu.Size = new Size(906, 24);
+            fileMenu.TabIndex = 0;
+            fileMenu.Text = "menuStrip1";
+            fileMenu.ItemClicked += fileMenu_ItemClicked;
             // 
             // tsmFile
             // 
-            tsmFile.DropDownItems.AddRange(new ToolStripItem[] { tsbOpenImage });
+            tsmFile.DropDownItems.AddRange(new ToolStripItem[] { tsbOpenImage, saveImageToolStripMenuItem });
             tsmFile.Name = "tsmFile";
             tsmFile.Size = new Size(37, 20);
             tsmFile.Text = "File";
@@ -83,9 +85,16 @@ namespace LunaDisc
             // tsbOpenImage
             // 
             tsbOpenImage.Name = "tsbOpenImage";
-            tsbOpenImage.Size = new Size(139, 22);
+            tsbOpenImage.Size = new Size(180, 22);
             tsbOpenImage.Text = "Open Image";
             tsbOpenImage.Click += tsbOpenImage_Click;
+            // 
+            // saveImageToolStripMenuItem
+            // 
+            saveImageToolStripMenuItem.Name = "saveImageToolStripMenuItem";
+            saveImageToolStripMenuItem.Size = new Size(180, 22);
+            saveImageToolStripMenuItem.Text = "Save Image";
+            saveImageToolStripMenuItem.Click += saveImageToolStripMenuItem_Click;
             // 
             // helpToolStripMenuItem
             // 
@@ -260,14 +269,14 @@ namespace LunaDisc
             Controls.Add(lvBrowser);
             Controls.Add(panVolInfo);
             Controls.Add(toolStrip);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
+            Controls.Add(fileMenu);
+            MainMenuStrip = fileMenu;
             Margin = new Padding(3, 2, 3, 2);
             Name = "MainWindow";
             Text = "Form1";
             Load += MainWindow_Load;
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
+            fileMenu.ResumeLayout(false);
+            fileMenu.PerformLayout();
             toolStrip.ResumeLayout(false);
             toolStrip.PerformLayout();
             fileContextMenu.ResumeLayout(false);
@@ -283,7 +292,7 @@ namespace LunaDisc
 
         #endregion
 
-        private MenuStrip menuStrip1;
+        private MenuStrip fileMenu;
         private ToolStripMenuItem tsmFile;
         private ToolStripMenuItem tsbOpenImage;
         private ListView lvBrowser;
@@ -303,5 +312,6 @@ namespace LunaDisc
         private Label lProgress;
         private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
+        private ToolStripMenuItem saveImageToolStripMenuItem;
     }
 }

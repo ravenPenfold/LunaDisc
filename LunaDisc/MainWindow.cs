@@ -1,6 +1,7 @@
 using LunaDisc.Classes.FileMan;
 using LunaDisc.Data;
 using LunaDisc.UI.Info;
+using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 
 namespace LunaDisc
@@ -141,6 +142,14 @@ namespace LunaDisc
                         {
                             fileContextMenu.Show(MousePosition);
                         }
+                        else if (lvBrowser.SelectedItems[0].Group == lvBrowser.Groups[0])
+                        {
+                            Debug.Write("tba");
+                        }
+                        else
+                        {
+                            Debug.Write("tba");
+                        }
                     }
                     break;
             }
@@ -161,6 +170,16 @@ namespace LunaDisc
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new About().ShowDialog();
+        }
+
+        private void fileMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void saveImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            image.buildImage(txtVolumeId.Text);
         }
     }
 }

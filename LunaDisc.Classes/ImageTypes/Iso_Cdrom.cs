@@ -1,11 +1,58 @@
 ﻿using DiscUtils.Iso9660;
 using LunaDisc.Classes.Codes;
+using System.Diagnostics;
 using static LunaDisc.Classes.FileMan.DiscImage;
 
 namespace LunaDisc.Classes.ImageTypes
 {
     public class Iso_Cdrom
     {
+        // Create Image
+        public static void saveImage(string imagePath, string volumeId) // Saves the Disc Image
+        {
+            if (File.Exists(imagePath))
+            {
+                File.Move(imagePath, imagePath + ".temp");          // File exists, create a temporary copy to work with
+            }
+            using (FileStream fs = File.Open(imagePath + ".temp", FileMode.Open))
+            {
+                CDReader cdReader = new CDReader(fs, true);
+                CDBuilder cdBuilder = new CDBuilder();
+                cdBuilder.UseJoliet = true;
+                cdBuilder.VolumeIdentifier = volumeId;
+                List<string> directories = new List<string>();
+                directories.Add("\\");
+                int i = 0;
+                while(true)
+                {
+                    if (directories.Count != i)
+                    {
+                        Debug.Write(directories[i]);
+                        foreach (var dir in cdReader.GetDirectories(directories[i])) // Loop through & add each directory to a list
+                        {
+                            directories.Add(dir);
+                        }
+                    } else
+                    {
+                        break;
+                    }
+                    i++;
+                }
+                foreach (string dir in directories)     // Add directories and files
+                {
+                    cdBuilder.AddDirectory(dir);
+                    foreach(var file in cdReader.GetFiles(dir))
+                    {
+                        cdBuilder.AddFile(file.Split(";").First(), cdReader.OpenFile(file, FileMode.Open));
+                    }
+                }
+
+                cdBuilder.Build(imagePath);     // Finished
+
+                Debug.WriteLine("================\nFinished");
+            }
+        }
+
         // Volume Information
         public static string getVolumeName(string imagePath)
         {
