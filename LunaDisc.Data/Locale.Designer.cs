@@ -97,11 +97,38 @@ namespace LunaDisc.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string cancelButton {
+            get {
+                return ResourceManager.GetString("cancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clearing Browser....
         /// </summary>
         public static string clearBrowser {
             get {
                 return ResourceManager.GetString("clearBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a new Directory.
+        /// </summary>
+        public static string dlgCreateDirectoryHeader {
+            get {
+                return ResourceManager.GetString("dlgCreateDirectoryHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename .
+        /// </summary>
+        public static string dlgRenameHeader {
+            get {
+                return ResourceManager.GetString("dlgRenameHeader", resourceCulture);
             }
         }
         
@@ -147,6 +174,15 @@ namespace LunaDisc.Data {
         public static string openImage {
             get {
                 return ResourceManager.GetString("openImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a unique name below..
+        /// </summary>
+        public static string renameDescription {
+            get {
+                return ResourceManager.GetString("renameDescription", resourceCulture);
             }
         }
         

@@ -52,6 +52,12 @@ namespace LunaDisc
             tstActiveDirectory = new ToolStripTextBox();
             fileContextMenu = new ContextMenuStrip(components);
             extractFileToolStripMenuItem = new ToolStripMenuItem();
+            deleteToolStripMenuItem = new ToolStripMenuItem();
+            fcSep = new ToolStripSeparator();
+            addToolStripMenuItem = new ToolStripMenuItem();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            directoryToolStripMenuItem = new ToolStripMenuItem();
+            renameToolStripMenuItem = new ToolStripMenuItem();
             panVolInfo = new Panel();
             panProgress = new Panel();
             pbProgress = new ProgressBar();
@@ -207,9 +213,9 @@ namespace LunaDisc
             // fileContextMenu
             // 
             fileContextMenu.ImageScalingSize = new Size(20, 20);
-            fileContextMenu.Items.AddRange(new ToolStripItem[] { extractFileToolStripMenuItem });
+            fileContextMenu.Items.AddRange(new ToolStripItem[] { extractFileToolStripMenuItem, deleteToolStripMenuItem, fcSep, addToolStripMenuItem, renameToolStripMenuItem });
             fileContextMenu.Name = "fileContextMenu";
-            fileContextMenu.Size = new Size(131, 26);
+            fileContextMenu.Size = new Size(131, 98);
             // 
             // extractFileToolStripMenuItem
             // 
@@ -217,6 +223,45 @@ namespace LunaDisc
             extractFileToolStripMenuItem.Size = new Size(130, 22);
             extractFileToolStripMenuItem.Text = "Extract File";
             extractFileToolStripMenuItem.Click += extractFileToolStripMenuItem_Click;
+            // 
+            // deleteToolStripMenuItem
+            // 
+            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            deleteToolStripMenuItem.Size = new Size(130, 22);
+            deleteToolStripMenuItem.Text = "Delete";
+            // 
+            // fcSep
+            // 
+            fcSep.Name = "fcSep";
+            fcSep.Size = new Size(127, 6);
+            // 
+            // addToolStripMenuItem
+            // 
+            addToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { fileToolStripMenuItem, directoryToolStripMenuItem });
+            addToolStripMenuItem.Name = "addToolStripMenuItem";
+            addToolStripMenuItem.Size = new Size(130, 22);
+            addToolStripMenuItem.Text = "Add... ";
+            addToolStripMenuItem.Click += addToolStripMenuItem_Click;
+            // 
+            // fileToolStripMenuItem
+            // 
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new Size(122, 22);
+            fileToolStripMenuItem.Text = "File";
+            fileToolStripMenuItem.Click += fileToolStripMenuItem_Click;
+            // 
+            // directoryToolStripMenuItem
+            // 
+            directoryToolStripMenuItem.Name = "directoryToolStripMenuItem";
+            directoryToolStripMenuItem.Size = new Size(122, 22);
+            directoryToolStripMenuItem.Text = "Directory";
+            directoryToolStripMenuItem.Click += directoryToolStripMenuItem_Click;
+            // 
+            // renameToolStripMenuItem
+            // 
+            renameToolStripMenuItem.Name = "renameToolStripMenuItem";
+            renameToolStripMenuItem.Size = new Size(130, 22);
+            renameToolStripMenuItem.Text = "Rename";
             // 
             // panVolInfo
             // 
@@ -338,7 +383,6 @@ namespace LunaDisc
         private ToolStripButton tsbBackDirectory;
         private ToolStripTextBox tstActiveDirectory;
         private ContextMenuStrip fileContextMenu;
-        private ToolStripMenuItem extractFileToolStripMenuItem;
         private ImageList BrowserImages;
         private Panel panVolInfo;
         private Panel panVolId;
@@ -356,5 +400,12 @@ namespace LunaDisc
         private ToolStripMenuItem saveImageAsToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripMenuItem exitToolStripMenuItem;
+        private ToolStripMenuItem extractFileToolStripMenuItem;
+        private ToolStripMenuItem deleteToolStripMenuItem;
+        private ToolStripSeparator fcSep;
+        private ToolStripMenuItem addToolStripMenuItem;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem directoryToolStripMenuItem;
+        private ToolStripMenuItem renameToolStripMenuItem;
     }
 }

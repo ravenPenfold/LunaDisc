@@ -30,6 +30,7 @@ namespace LunaDisc.Classes.FileMan
         public DiscImage(string fileName, Types type)
         {
             actualPath = fileName;
+            deleteTemp();
             File.Copy(actualPath, tempFile, true);
             path = "\\";
             fType = type;
@@ -39,6 +40,7 @@ namespace LunaDisc.Classes.FileMan
         {
             path = "\\";
             fType = type;
+            deleteTemp();
 
             actualPath = "New Image";
             buildImage(volumeName);
@@ -57,13 +59,22 @@ namespace LunaDisc.Classes.FileMan
             return s;
         }
 
+        public void deleteTemp()
+        {
+            if(File.Exists(tempFile))
+            {
+                File.Delete(tempFile);
+            }
+        }
+
         // Builders
         public void buildImage(string volumeName)
         {
             switch (fType)
             {
                 case Types.TYPE_CD_DISC:
-                    Iso_Cdrom.saveImage(tempFile, volumeName);
+                    // Iso_Cdrom.saveImage(tempFile, volumeName);
+                    throw new NotImplementedException();
                     break;
             }
         }
@@ -75,7 +86,8 @@ namespace LunaDisc.Classes.FileMan
                 switch (fType)
                 {
                     case Types.TYPE_CD_DISC:
-                        Iso_Cdrom.saveImage(tempFile, volumeName(), path + file.Split("\\").Last(), File.ReadAllBytes(file));
+                        // Iso_Cdrom.saveImage(tempFile, volumeName(), path + file.Split("\\").Last(), File.ReadAllBytes(file));
+                        throw new NotImplementedException();
                         break;
                 }
             }
@@ -86,7 +98,8 @@ namespace LunaDisc.Classes.FileMan
             switch (fType)
             {
                 case Types.TYPE_CD_DISC:
-                    Iso_Cdrom.saveImage(tempFile, volumeName(), directory);
+                    // Iso_Cdrom.saveImage(tempFile, volumeName(), path + directory);
+                    throw new NotImplementedException();
                     break;
             }
         }

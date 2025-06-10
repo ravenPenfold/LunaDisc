@@ -8,6 +8,8 @@ namespace LunaDisc.Classes.ImageTypes
     public class Iso_Cdrom
     {
         // Create Image
+
+        /*
         public static CDBuilder makeBaseImage(CDBuilder cdBuilder, CDReader cdReader)
         {
             List<string> directories = new List<string>();
@@ -34,6 +36,7 @@ namespace LunaDisc.Classes.ImageTypes
                 cdBuilder.AddDirectory(dir);
                 foreach (var file in cdReader.GetFiles(dir))
                 {
+                    Debug.WriteLine(file);
                     cdBuilder.AddFile(file.Split(";").First(), cdReader.OpenFile(file, FileMode.Open));
                 }
             }
@@ -43,58 +46,50 @@ namespace LunaDisc.Classes.ImageTypes
         {
             if (File.Exists(imagePath))
             {
-                File.Move(imagePath, imagePath + ".temp", true);          // File exists, create a temporary copy to work with
+                File.Move(imagePath, Environment.SpecialFolder.ApplicationData + "\\LunaDisc.tmp", true);          // File exists, create a temporary copy to work with
             }
-            using (FileStream fs = File.Open(imagePath + ".temp", FileMode.Open))
-            {
-                CDReader cdReader = new CDReader(fs, true);
-                CDBuilder cdBuilder = new CDBuilder();
-                cdBuilder.UseJoliet = true;
-                cdBuilder.VolumeIdentifier = volumeId;
+            CDBuilder cdBuilder = new CDBuilder();
+            cdBuilder.UseJoliet = true;
+            cdBuilder.VolumeIdentifier = volumeId;
 
-                cdBuilder.Build(imagePath);     // Finished
-            }
+            cdBuilder.Build(imagePath);     // Finished
         }
 
         public static void saveImage(string imagePath, string volumeId, string directory)
         {
-            if (File.Exists(imagePath))
-            {
-                File.Move(imagePath, imagePath + ".temp");          // File exists, create a temporary copy to work with
-            }
-            using (FileStream fs = File.Open(imagePath + ".temp", FileMode.Open))
+            CDBuilder cdBuilder = new CDBuilder();
+            cdBuilder.UseJoliet = true;
+            cdBuilder.VolumeIdentifier = volumeId;
+            using (FileStream fs = File.Open(imagePath, FileMode.Open))
             {
                 CDReader cdReader = new CDReader(fs, true);
-                CDBuilder cdBuilder = new CDBuilder();
-                cdBuilder.UseJoliet = true;
-                cdBuilder.VolumeIdentifier = volumeId;
 
                 cdBuilder = makeBaseImage(cdBuilder, cdReader);
                 cdBuilder.AddDirectory(directory);
-
                 cdBuilder.Build(imagePath);     // Finished
             }
         }
 
         public static void saveImage(string imagePath, string volumeId, string file, byte[] fileData)
         {
-            if (File.Exists(imagePath))
-            {
-                File.Move(imagePath, imagePath + ".temp");          // File exists, create a temporary copy to work with
-            }
-            using (FileStream fs = File.Open(imagePath + ".temp", FileMode.Open))
+
+            CDBuilder cdBuilder = new CDBuilder();
+            cdBuilder.UseJoliet = true;
+            cdBuilder.VolumeIdentifier = volumeId;
+            File.Copy(imagePath, imagePath + ".old");
+            using (FileStream fs = File.Open(imagePath + ".old", FileMode.Open))
             {
                 CDReader cdReader = new CDReader(fs, true);
-                CDBuilder cdBuilder = new CDBuilder();
-                cdBuilder.UseJoliet = true;
-                cdBuilder.VolumeIdentifier = volumeId;
-
                 cdBuilder = makeBaseImage(cdBuilder, cdReader);
                 cdBuilder.AddFile(file, fileData);
-
-                cdBuilder.Build(imagePath);     // Finished
             }
-        }
+
+            using (FileStream fs = File.Open(imagePath, FileMode.Create))
+            {
+                cdBuilder.Build(fs);
+            }
+            File.Delete(imagePath + ".old");
+        } */
 
         // Volume Information
         public static string getVolumeName(string imagePath)

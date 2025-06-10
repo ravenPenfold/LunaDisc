@@ -1,6 +1,7 @@
 using LunaDisc.Classes.Codes;
 using LunaDisc.Classes.FileMan;
 using LunaDisc.Data;
+using LunaDisc.UI;
 using LunaDisc.UI.Info;
 using System.Diagnostics;
 using System.Security.Cryptography;
@@ -141,19 +142,27 @@ namespace LunaDisc
                     {
                         if (lvBrowser.SelectedItems[0].Group == lvBrowser.Groups[1])
                         {
-                            fileContextMenu.Show(MousePosition);
-                        }
-                        else if (lvBrowser.SelectedItems[0].Group == lvBrowser.Groups[0])
-                        {
-                            Debug.Write("tba");
+                            extractFileToolStripMenuItem.Visible = true;
+                            deleteToolStripMenuItem.Visible = true;
+                            fcSep.Visible = false;
                         }
                         else
                         {
-                            Debug.Write("tba");
+                            extractFileToolStripMenuItem.Visible = false;
+                            deleteToolStripMenuItem.Visible = true;
+                            fcSep.Visible = false;
                         }
                     }
+                    else
+                    {
+                        extractFileToolStripMenuItem.Visible = false;
+                        deleteToolStripMenuItem.Visible = false;
+                        fcSep.Visible = false;
+                    }
+                    fileContextMenu.Show(MousePosition);
                     break;
             }
+
         }
 
         private void extractFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -183,7 +192,8 @@ namespace LunaDisc
             if (image.actualPath == null)
             {
                 saveAs();
-            } else if (image.actualPath == "New Image")
+            }
+            else if (image.actualPath == "New Image")
             {
                 saveAs();
             }
@@ -230,6 +240,34 @@ namespace LunaDisc
         private void saveImageAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             saveAs();
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            DialogResult dr = ofd.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                image.addFile(ofd.FileName, image.path);
+                listFiles(image.path);
+            }
+        }
+
+        private void directoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RenameDialog rd = new RenameDialog();
+            rd.rename = false;
+            rd.ShowDialog();
+            if (rd.DialogResult == DialogResult.OK)
+            {
+                image.addDirectory(rd.name);
+                listFiles(image.path);
+            }
         }
     }
 }
