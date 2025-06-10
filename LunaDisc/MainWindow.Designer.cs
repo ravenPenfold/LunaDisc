@@ -37,6 +37,8 @@ namespace LunaDisc
             menuStrip1 = new MenuStrip();
             tsmFile = new ToolStripMenuItem();
             tsbOpenImage = new ToolStripMenuItem();
+            helpToolStripMenuItem = new ToolStripMenuItem();
+            aboutToolStripMenuItem = new ToolStripMenuItem();
             lvBrowser = new ListView();
             BrowserImages = new ImageList(components);
             toolStrip = new ToolStrip();
@@ -63,10 +65,11 @@ namespace LunaDisc
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { tsmFile });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { tsmFile, helpToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1036, 28);
+            menuStrip1.Padding = new Padding(5, 2, 0, 2);
+            menuStrip1.Size = new Size(906, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -74,15 +77,29 @@ namespace LunaDisc
             // 
             tsmFile.DropDownItems.AddRange(new ToolStripItem[] { tsbOpenImage });
             tsmFile.Name = "tsmFile";
-            tsmFile.Size = new Size(46, 24);
+            tsmFile.Size = new Size(37, 20);
             tsmFile.Text = "File";
             // 
             // tsbOpenImage
             // 
             tsbOpenImage.Name = "tsbOpenImage";
-            tsbOpenImage.Size = new Size(174, 26);
+            tsbOpenImage.Size = new Size(139, 22);
             tsbOpenImage.Text = "Open Image";
             tsbOpenImage.Click += tsbOpenImage_Click;
+            // 
+            // helpToolStripMenuItem
+            // 
+            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem });
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new Size(44, 20);
+            helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            aboutToolStripMenuItem.Size = new Size(107, 22);
+            aboutToolStripMenuItem.Text = "About";
+            aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
             // 
             // lvBrowser
             // 
@@ -93,9 +110,10 @@ namespace LunaDisc
             listViewGroup2.Name = "gpFiles";
             lvBrowser.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2 });
             lvBrowser.LargeImageList = BrowserImages;
-            lvBrowser.Location = new Point(305, 55);
+            lvBrowser.Location = new Point(267, 51);
+            lvBrowser.Margin = new Padding(3, 2, 3, 2);
             lvBrowser.Name = "lvBrowser";
-            lvBrowser.Size = new Size(731, 588);
+            lvBrowser.Size = new Size(639, 431);
             lvBrowser.SmallImageList = BrowserImages;
             lvBrowser.TabIndex = 1;
             lvBrowser.UseCompatibleStateImageBehavior = false;
@@ -116,9 +134,9 @@ namespace LunaDisc
             // 
             toolStrip.ImageScalingSize = new Size(20, 20);
             toolStrip.Items.AddRange(new ToolStripItem[] { tsbBackDirectory, tstActiveDirectory });
-            toolStrip.Location = new Point(0, 28);
+            toolStrip.Location = new Point(0, 24);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(1036, 27);
+            toolStrip.Size = new Size(906, 27);
             toolStrip.TabIndex = 2;
             toolStrip.Text = "toolStrip1";
             // 
@@ -128,7 +146,7 @@ namespace LunaDisc
             tsbBackDirectory.Image = (Image)resources.GetObject("tsbBackDirectory.Image");
             tsbBackDirectory.ImageTransparentColor = Color.Magenta;
             tsbBackDirectory.Name = "tsbBackDirectory";
-            tsbBackDirectory.Size = new Size(29, 24);
+            tsbBackDirectory.Size = new Size(24, 24);
             tsbBackDirectory.Text = "toolStripButton1";
             tsbBackDirectory.Click += tsbBackDirectory_Click;
             // 
@@ -136,7 +154,7 @@ namespace LunaDisc
             // 
             tstActiveDirectory.AutoSize = false;
             tstActiveDirectory.Name = "tstActiveDirectory";
-            tstActiveDirectory.Size = new Size(100, 27);
+            tstActiveDirectory.Size = new Size(88, 23);
             tstActiveDirectory.KeyPress += tstActiveDirectory_KeyPress;
             // 
             // fileContextMenu
@@ -144,12 +162,12 @@ namespace LunaDisc
             fileContextMenu.ImageScalingSize = new Size(20, 20);
             fileContextMenu.Items.AddRange(new ToolStripItem[] { extractFileToolStripMenuItem });
             fileContextMenu.Name = "fileContextMenu";
-            fileContextMenu.Size = new Size(151, 28);
+            fileContextMenu.Size = new Size(131, 26);
             // 
             // extractFileToolStripMenuItem
             // 
             extractFileToolStripMenuItem.Name = "extractFileToolStripMenuItem";
-            extractFileToolStripMenuItem.Size = new Size(150, 24);
+            extractFileToolStripMenuItem.Size = new Size(130, 22);
             extractFileToolStripMenuItem.Text = "Extract File";
             extractFileToolStripMenuItem.Click += extractFileToolStripMenuItem_Click;
             // 
@@ -159,9 +177,10 @@ namespace LunaDisc
             panVolInfo.Controls.Add(panVolId);
             panVolInfo.Controls.Add(lVolumeInfo);
             panVolInfo.Dock = DockStyle.Left;
-            panVolInfo.Location = new Point(0, 55);
+            panVolInfo.Location = new Point(0, 51);
+            panVolInfo.Margin = new Padding(3, 2, 3, 2);
             panVolInfo.Name = "panVolInfo";
-            panVolInfo.Size = new Size(305, 588);
+            panVolInfo.Size = new Size(267, 431);
             panVolInfo.TabIndex = 3;
             // 
             // panProgress
@@ -169,25 +188,27 @@ namespace LunaDisc
             panProgress.Controls.Add(pbProgress);
             panProgress.Controls.Add(lProgress);
             panProgress.Dock = DockStyle.Bottom;
-            panProgress.Location = new Point(0, 514);
+            panProgress.Location = new Point(0, 375);
+            panProgress.Margin = new Padding(3, 2, 3, 2);
             panProgress.Name = "panProgress";
-            panProgress.Size = new Size(305, 74);
+            panProgress.Size = new Size(267, 56);
             panProgress.TabIndex = 6;
             panProgress.Visible = false;
             // 
             // pbProgress
             // 
-            pbProgress.Location = new Point(12, 32);
+            pbProgress.Location = new Point(10, 24);
+            pbProgress.Margin = new Padding(3, 2, 3, 2);
             pbProgress.Name = "pbProgress";
-            pbProgress.Size = new Size(287, 29);
+            pbProgress.Size = new Size(251, 22);
             pbProgress.TabIndex = 1;
             // 
             // lProgress
             // 
             lProgress.AutoSize = true;
-            lProgress.Location = new Point(12, 9);
+            lProgress.Location = new Point(10, 7);
             lProgress.Name = "lProgress";
-            lProgress.Size = new Size(50, 20);
+            lProgress.Size = new Size(38, 15);
             lProgress.TabIndex = 0;
             lProgress.Text = "label1";
             // 
@@ -196,25 +217,27 @@ namespace LunaDisc
             panVolId.Controls.Add(txtVolumeId);
             panVolId.Controls.Add(lVolumeId);
             panVolId.Dock = DockStyle.Top;
-            panVolId.Location = new Point(0, 32);
+            panVolId.Location = new Point(0, 25);
+            panVolId.Margin = new Padding(3, 2, 3, 2);
             panVolId.Name = "panVolId";
-            panVolId.Size = new Size(305, 41);
+            panVolId.Size = new Size(267, 31);
             panVolId.TabIndex = 5;
             panVolId.Visible = false;
             // 
             // txtVolumeId
             // 
-            txtVolumeId.Location = new Point(97, 6);
+            txtVolumeId.Location = new Point(85, 4);
+            txtVolumeId.Margin = new Padding(3, 2, 3, 2);
             txtVolumeId.Name = "txtVolumeId";
-            txtVolumeId.Size = new Size(202, 27);
+            txtVolumeId.Size = new Size(177, 23);
             txtVolumeId.TabIndex = 1;
             // 
             // lVolumeId
             // 
             lVolumeId.AutoSize = true;
-            lVolumeId.Location = new Point(12, 9);
+            lVolumeId.Location = new Point(10, 7);
             lVolumeId.Name = "lVolumeId";
-            lVolumeId.Size = new Size(76, 20);
+            lVolumeId.Size = new Size(60, 15);
             lVolumeId.TabIndex = 0;
             lVolumeId.Text = "lVolumeId";
             // 
@@ -225,20 +248,21 @@ namespace LunaDisc
             lVolumeInfo.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Italic);
             lVolumeInfo.Location = new Point(0, 0);
             lVolumeInfo.Name = "lVolumeInfo";
-            lVolumeInfo.Size = new Size(105, 32);
+            lVolumeInfo.Size = new Size(83, 25);
             lVolumeInfo.TabIndex = 4;
             lVolumeInfo.Text = "lVolInfo";
             // 
             // MainWindow
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1036, 643);
+            ClientSize = new Size(906, 482);
             Controls.Add(lvBrowser);
             Controls.Add(panVolInfo);
             Controls.Add(toolStrip);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "MainWindow";
             Text = "Form1";
             Load += MainWindow_Load;
@@ -277,5 +301,7 @@ namespace LunaDisc
         private Panel panProgress;
         private ProgressBar pbProgress;
         private Label lProgress;
+        private ToolStripMenuItem helpToolStripMenuItem;
+        private ToolStripMenuItem aboutToolStripMenuItem;
     }
 }

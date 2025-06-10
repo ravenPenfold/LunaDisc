@@ -61,11 +61,38 @@ namespace LunaDisc.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About .
+        /// </summary>
+        public static string aboutTitle {
+            get {
+                return ResourceManager.GetString("aboutTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  is licensed under the GPL-3.0 License.
+        /// </summary>
+        public static string appLicenseInfo {
+            get {
+                return ResourceManager.GetString("appLicenseInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LunaDisc.
         /// </summary>
         public static string appTitle {
             get {
                 return ResourceManager.GetString("appTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version: .
+        /// </summary>
+        public static string appVersionPrefix {
+            get {
+                return ResourceManager.GetString("appVersionPrefix", resourceCulture);
             }
         }
         
@@ -106,6 +133,15 @@ namespace LunaDisc.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string okButton {
+            get {
+                return ResourceManager.GetString("okButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open an Disc Image.
         /// </summary>
         public static string openImage {
@@ -129,6 +165,15 @@ namespace LunaDisc.Data {
         public static string upDirectory {
             get {
                 return ResourceManager.GetString("upDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visit the GitHub Repository.
+        /// </summary>
+        public static string visitGit {
+            get {
+                return ResourceManager.GetString("visitGit", resourceCulture);
             }
         }
         

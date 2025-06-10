@@ -28,4 +28,8 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy $(ProjectDir)\..\LICENSE.txt $(OutDir)&#xD;&#xA;echo $(ProjectDir)" />
+  </Target>
+
 </Project>

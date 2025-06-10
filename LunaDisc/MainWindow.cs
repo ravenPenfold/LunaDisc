@@ -1,5 +1,6 @@
 using LunaDisc.Classes.FileMan;
 using LunaDisc.Data;
+using LunaDisc.UI.Info;
 using System.Security.Cryptography.X509Certificates;
 
 namespace LunaDisc
@@ -155,6 +156,11 @@ namespace LunaDisc
             {
                 image.extractFile(image.path + "\\" + lvBrowser.SelectedItems[0].Text, sfd.FileName);
             }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new About().ShowDialog();
         }
     }
 }
