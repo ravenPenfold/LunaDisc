@@ -45,6 +45,9 @@ namespace LunaDisc
             fileContextMenu = new ContextMenuStrip(components);
             extractFileToolStripMenuItem = new ToolStripMenuItem();
             panVolInfo = new Panel();
+            panProgress = new Panel();
+            pbProgress = new ProgressBar();
+            lProgress = new Label();
             panVolId = new Panel();
             txtVolumeId = new TextBox();
             lVolumeId = new Label();
@@ -53,6 +56,7 @@ namespace LunaDisc
             toolStrip.SuspendLayout();
             fileContextMenu.SuspendLayout();
             panVolInfo.SuspendLayout();
+            panProgress.SuspendLayout();
             panVolId.SuspendLayout();
             SuspendLayout();
             // 
@@ -151,6 +155,7 @@ namespace LunaDisc
             // 
             // panVolInfo
             // 
+            panVolInfo.Controls.Add(panProgress);
             panVolInfo.Controls.Add(panVolId);
             panVolInfo.Controls.Add(lVolumeInfo);
             panVolInfo.Dock = DockStyle.Left;
@@ -158,6 +163,33 @@ namespace LunaDisc
             panVolInfo.Name = "panVolInfo";
             panVolInfo.Size = new Size(305, 588);
             panVolInfo.TabIndex = 3;
+            // 
+            // panProgress
+            // 
+            panProgress.Controls.Add(pbProgress);
+            panProgress.Controls.Add(lProgress);
+            panProgress.Dock = DockStyle.Bottom;
+            panProgress.Location = new Point(0, 514);
+            panProgress.Name = "panProgress";
+            panProgress.Size = new Size(305, 74);
+            panProgress.TabIndex = 6;
+            panProgress.Visible = false;
+            // 
+            // pbProgress
+            // 
+            pbProgress.Location = new Point(12, 32);
+            pbProgress.Name = "pbProgress";
+            pbProgress.Size = new Size(287, 29);
+            pbProgress.TabIndex = 1;
+            // 
+            // lProgress
+            // 
+            lProgress.AutoSize = true;
+            lProgress.Location = new Point(12, 9);
+            lProgress.Name = "lProgress";
+            lProgress.Size = new Size(50, 20);
+            lProgress.TabIndex = 0;
+            lProgress.Text = "label1";
             // 
             // panVolId
             // 
@@ -217,6 +249,8 @@ namespace LunaDisc
             fileContextMenu.ResumeLayout(false);
             panVolInfo.ResumeLayout(false);
             panVolInfo.PerformLayout();
+            panProgress.ResumeLayout(false);
+            panProgress.PerformLayout();
             panVolId.ResumeLayout(false);
             panVolId.PerformLayout();
             ResumeLayout(false);
@@ -240,5 +274,8 @@ namespace LunaDisc
         private TextBox txtVolumeId;
         private Label lVolumeId;
         private Label lVolumeInfo;
+        private Panel panProgress;
+        private ProgressBar pbProgress;
+        private Label lProgress;
     }
 }

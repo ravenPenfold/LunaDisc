@@ -121,13 +121,25 @@
     <value>LunaDisc</value>
     <comment>Title of the App</comment>
   </data>
+  <data name="clearBrowser" xml:space="preserve">
+    <value>Clearing Browser...</value>
+  </data>
   <data name="fileCtxMenu" xml:space="preserve">
     <value>File</value>
     <comment>File Context Menu Button</comment>
   </data>
+  <data name="getDirectories" xml:space="preserve">
+    <value>Getting Directories...</value>
+  </data>
+  <data name="getFiles" xml:space="preserve">
+    <value>Getting Files...</value>
+  </data>
   <data name="openImage" xml:space="preserve">
     <value>Open an Disc Image</value>
     <comment>open a disk image button</comment>
+  </data>
+  <data name="updateList" xml:space="preserve">
+    <value>Updating Browser...</value>
   </data>
   <data name="upDirectory" xml:space="preserve">
     <value>Go Up a Directory</value>

@@ -70,6 +70,15 @@ namespace LunaDisc.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clearing Browser....
+        /// </summary>
+        public static string clearBrowser {
+            get {
+                return ResourceManager.GetString("clearBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
         public static string fileCtxMenu {
@@ -79,11 +88,38 @@ namespace LunaDisc.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting Directories....
+        /// </summary>
+        public static string getDirectories {
+            get {
+                return ResourceManager.GetString("getDirectories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting Files....
+        /// </summary>
+        public static string getFiles {
+            get {
+                return ResourceManager.GetString("getFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open an Disc Image.
         /// </summary>
         public static string openImage {
             get {
                 return ResourceManager.GetString("openImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updating Browser....
+        /// </summary>
+        public static string updateList {
+            get {
+                return ResourceManager.GetString("updateList", resourceCulture);
             }
         }
         
