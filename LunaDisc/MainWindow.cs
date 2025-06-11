@@ -17,6 +17,7 @@ namespace LunaDisc
         private void listFiles(string path)
         {
             image.path = path;
+            tstActiveDirectory.Text = path;
             panProgress.Visible = true;
             pbProgress.Maximum = 4;
             pbProgress.Value = 0;
@@ -225,7 +226,7 @@ namespace LunaDisc
             {
                 saveAs();
             }
-            else if (image.actualPath == image.tempPath)
+            else if (image.actualPath == DiscImage.tempPath)
             {
                 saveAs();
             }
@@ -250,7 +251,7 @@ namespace LunaDisc
             DialogResult dr = sfd.ShowDialog();
             if (dr == DialogResult.OK)
             {
-                if(File.Exists(sfd.FileName))
+                if (File.Exists(sfd.FileName))
                 {
                     File.Delete(sfd.FileName);
                 }
@@ -307,9 +308,9 @@ namespace LunaDisc
             }
         }
 
-        private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            image.cleanUp();
+            DiscImage.cleanUp();
         }
     }
 }

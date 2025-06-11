@@ -367,7 +367,7 @@ namespace LunaDisc
             Margin = new Padding(3, 2, 3, 2);
             Name = "MainWindow";
             Text = "Form1";
-            FormClosed += MainWindow_FormClosed;
+            FormClosing += MainWindow_FormClosing;
             Load += MainWindow_Load;
             fileMenu.ResumeLayout(false);
             fileMenu.PerformLayout();
