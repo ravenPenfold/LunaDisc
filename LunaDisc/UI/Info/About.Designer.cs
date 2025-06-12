@@ -30,54 +30,47 @@
         {
             lAboutMain = new Label();
             lDetails = new Label();
-            lGithubRepo = new LinkLabel();
             bOk = new Button();
             lLicense = new LinkLabel();
+            pictureBox1 = new PictureBox();
+            lMoreInfo = new Label();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lAboutMain
             // 
-            lAboutMain.AutoSize = true;
-            lAboutMain.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lAboutMain.Location = new Point(12, 9);
+            lAboutMain.Font = new Font("Segoe UI", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lAboutMain.ForeColor = Color.OrangeRed;
+            lAboutMain.Location = new Point(72, 12);
             lAboutMain.Name = "lAboutMain";
-            lAboutMain.Size = new Size(67, 25);
+            lAboutMain.Size = new Size(288, 47);
             lAboutMain.TabIndex = 0;
-            lAboutMain.Text = "label1";
+            lAboutMain.Text = "LunaDisc";
             // 
             // lDetails
             // 
             lDetails.AutoSize = true;
-            lDetails.Location = new Point(12, 34);
+            lDetails.Location = new Point(77, 59);
             lDetails.Name = "lDetails";
             lDetails.Size = new Size(38, 15);
             lDetails.TabIndex = 1;
             lDetails.Text = "label1";
-            // 
-            // lGithubRepo
-            // 
-            lGithubRepo.AutoSize = true;
-            lGithubRepo.Location = new Point(12, 332);
-            lGithubRepo.Name = "lGithubRepo";
-            lGithubRepo.Size = new Size(60, 15);
-            lGithubRepo.TabIndex = 2;
-            lGithubRepo.TabStop = true;
-            lGithubRepo.Text = "linkLabel1";
-            lGithubRepo.LinkClicked += lGithubRepo_LinkClicked;
+            lDetails.Click += lDetails_Click;
             // 
             // bOk
             // 
-            bOk.Location = new Point(286, 328);
+            bOk.Location = new Point(286, 124);
             bOk.Name = "bOk";
             bOk.Size = new Size(75, 23);
             bOk.TabIndex = 3;
             bOk.Text = "button1";
             bOk.UseVisualStyleBackColor = true;
+            bOk.Click += bOk_Click;
             // 
             // lLicense
             // 
             lLicense.AutoSize = true;
-            lLicense.Location = new Point(12, 317);
+            lLicense.Location = new Point(12, 128);
             lLicense.Name = "lLicense";
             lLicense.Size = new Size(60, 15);
             lLicense.TabIndex = 4;
@@ -85,14 +78,34 @@
             lLicense.Text = "linkLabel1";
             lLicense.LinkClicked += lLicense_LinkClicked;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.Logo;
+            pictureBox1.Location = new Point(12, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(64, 64);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 5;
+            pictureBox1.TabStop = false;
+            // 
+            // lMoreInfo
+            // 
+            lMoreInfo.AutoSize = true;
+            lMoreInfo.Location = new Point(12, 79);
+            lMoreInfo.Name = "lMoreInfo";
+            lMoreInfo.Size = new Size(38, 45);
+            lMoreInfo.TabIndex = 6;
+            lMoreInfo.Text = "label1\r\nline 2\r\nline 3";
+            // 
             // About
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(373, 356);
+            ClientSize = new Size(373, 153);
+            Controls.Add(lMoreInfo);
+            Controls.Add(pictureBox1);
             Controls.Add(lLicense);
             Controls.Add(bOk);
-            Controls.Add(lGithubRepo);
             Controls.Add(lDetails);
             Controls.Add(lAboutMain);
             MaximizeBox = false;
@@ -104,6 +117,7 @@
             StartPosition = FormStartPosition.CenterParent;
             Text = "About";
             Load += About_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -112,8 +126,9 @@
 
         private Label lAboutMain;
         private Label lDetails;
-        private LinkLabel lGithubRepo;
         private Button bOk;
         private LinkLabel lLicense;
+        private PictureBox pictureBox1;
+        private Label lMoreInfo;
     }
 }

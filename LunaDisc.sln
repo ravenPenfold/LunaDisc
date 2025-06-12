@@ -10,6 +10,15 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunaDisc.Data", "LunaDisc.Data\LunaDisc.Data.csproj", "{019A2E30-DA68-EE39-B8DB-ABE3FD3D6931}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "LunaDiscSetup", "LunaDiscSetup\LunaDiscSetup.vdproj", "{77102954-1115-19CB-BB45-FEDBA5697C33}"
+	ProjectSection(AutomaticVersions) = postProject
+		UpdateAssemblyVersion = False
+		UpdateAssemblyFileVersion = False
+		UpdateAssemblyInfoVersion = False
+		AdvancedSettingsExpanded = True
+		UpdatePackageVersion = False
+		AssemblyInfoVersionType = SettingsVersion
+		InheritWinAppVersionFrom = None
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

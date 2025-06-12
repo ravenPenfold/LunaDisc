@@ -13,6 +13,7 @@ namespace LunaDisc.Classes.FileMan
         public string path;
 
         public List<FileWriting> dataToWrite;
+        public List<string> ignoreList;
         public string actualPath;
         public static string tempPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc\\New Image.bin";
 
@@ -31,6 +32,16 @@ namespace LunaDisc.Classes.FileMan
             }
         }
         
+        public void removeFile(string fileName)
+        {
+            ignoreList.Add(fileName);
+        }
+
+        public void renameOrMoveFile(string oldName, string newName)
+        {
+            ignoreList.Add(oldName);
+
+        }
 
         // for Returning
         public struct Returner
@@ -49,6 +60,7 @@ namespace LunaDisc.Classes.FileMan
         public DiscImage(string fileName, Types type)
         {
             dataToWrite = new List<FileWriting>();
+            ignoreList = new List<string>();
             actualPath = fileName;
             path = "\\";
             fType = type;
@@ -59,6 +71,7 @@ namespace LunaDisc.Classes.FileMan
             path = "\\";
             fType = type;
             dataToWrite = new List<FileWriting>();
+            ignoreList = new List<string>();
             actualPath = tempPath;
             newImage(volumeName);
         }

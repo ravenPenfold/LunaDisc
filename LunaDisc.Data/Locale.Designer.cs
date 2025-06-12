@@ -88,6 +88,24 @@ namespace LunaDisc.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 25.07.0-alpha1.
+        /// </summary>
+        public static string appVersion {
+            get {
+                return ResourceManager.GetString("appVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced Version Info:.
+        /// </summary>
+        public static string appVersionAdvanced {
+            get {
+                return ResourceManager.GetString("appVersionAdvanced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version: .
         /// </summary>
         public static string appVersionPrefix {

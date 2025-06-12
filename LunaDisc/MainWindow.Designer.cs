@@ -363,10 +363,11 @@ namespace LunaDisc
             Controls.Add(panVolInfo);
             Controls.Add(toolStrip);
             Controls.Add(fileMenu);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = fileMenu;
             Margin = new Padding(3, 2, 3, 2);
             Name = "MainWindow";
-            Text = "Form1";
+            Text = "Title";
             FormClosing += MainWindow_FormClosing;
             Load += MainWindow_Load;
             fileMenu.ResumeLayout(false);

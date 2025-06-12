@@ -128,6 +128,12 @@
     <value>LunaDisc</value>
     <comment>Title of the App</comment>
   </data>
+  <data name="appVersion" xml:space="preserve">
+    <value>25.07.0-alpha1</value>
+  </data>
+  <data name="appVersionAdvanced" xml:space="preserve">
+    <value>Advanced Version Info:</value>
+  </data>
   <data name="appVersionPrefix" xml:space="preserve">
     <value>Version: </value>
     <comment>Version Prefix</comment>
