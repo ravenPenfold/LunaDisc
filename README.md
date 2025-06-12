@@ -6,6 +6,8 @@ LunaDisc is a 100% free disc image editor for Windows. It allows for the extract
 
 ✔️ Extract files from a standard .iso file
 
+✔️ Edit, Create and Delete files in a standard .iso file
+
 ## Disc Image Compatibility Chart
 | Format | Browse | Extract | Create New | Rename Files | Add Files |
 |--------|--------|---------|------------|--------------|-----------|
