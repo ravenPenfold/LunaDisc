@@ -1,2 +1,8 @@
 # Add a theme to the page
 theme: minima
+
+# Minima Specs
+minima:
+  skin: auto
+  nav_pages:
+    - downloads.md
