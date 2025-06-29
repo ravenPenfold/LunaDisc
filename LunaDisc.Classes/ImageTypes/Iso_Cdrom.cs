@@ -1,9 +1,7 @@
 ﻿using DiscUtils.Iso9660;
 using LunaDisc.Classes.Codes;
 using LunaDisc.Classes.FileMan;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
 using static LunaDisc.Classes.FileMan.DiscImage;
 
 namespace LunaDisc.Classes.ImageTypes
@@ -19,7 +17,7 @@ namespace LunaDisc.Classes.ImageTypes
             cdBuilder.Build(imagePath);
         }
 
-        public static void buildImage(string imagePath, string volumeId, List<DiscImage.FileWriting> data)
+        public static void buildImage(string imagePath, string volumeId, List<DiscImage.FileWriting> data, List<string> ignores)
         {
             if (File.Exists(imagePath))
             {
@@ -70,12 +68,26 @@ namespace LunaDisc.Classes.ImageTypes
             cdBuilder.UseJoliet = true;
             cdBuilder.VolumeIdentifier = volumeId;
 
-            foreach(DiscImage.FileWriting w in data)
+            List<int> removeIds = new List<int>();
+            foreach(var i in ignores)
             {
-                if(w.isDirectory == true)
+                Debug.WriteLine(i);
+                foreach(var d in data)
+                {
+                    if(d.fileLocation == i)
+                    {
+                        Debug.WriteLine("ID to delete: " + data.IndexOf(d));
+                    }
+                }
+            }
+
+            foreach (DiscImage.FileWriting w in data)
+            {
+                if (w.isDirectory == true)
                 {
                     cdBuilder.AddDirectory(w.fileLocation);
-                } else
+                }
+                else
                 {
                     cdBuilder.AddFile(w.fileLocation, w.data);
                 }
@@ -131,6 +143,27 @@ namespace LunaDisc.Classes.ImageTypes
             }
             return ErrorCodes.NoError;
         }
+
+        public static byte[] getAllBytes(string path, string imagePath)  // Extract file from Disc Image
+        {
+            byte[] bytes = new byte[0];
+            using (FileStream fs = File.Open(imagePath, FileMode.Open))
+            {
+                CDReader cdReader = new CDReader(fs, true);
+                if (cdReader.FileExists(path))
+                {
+                    bytes = new byte[cdReader.GetFileInfo(path).Length];
+                    var read = cdReader.OpenFile(path, FileMode.Open);
+                    for (int i = 0; i < cdReader.GetFileInfo(path).Length; i++)
+                    {
+                        bytes[i] = (byte)read.ReadByte();
+                    }
+                    read.Close();
+                }
+            }
+            return bytes;
+        }
+
         public static Returner getFilesInPath(string path, string imagePath)                // Get Files in Path
         {
             Returner returner = new Returner();

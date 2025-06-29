@@ -9,7 +9,7 @@
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
     <ApplicationIcon>Logo.ico</ApplicationIcon>
     <Version>$(VersionPrefix)</Version>
-    <AssemblyVersion>25.6.0.9294</AssemblyVersion>
+    <AssemblyVersion>25.6.0.9311</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
 

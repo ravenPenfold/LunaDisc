@@ -317,5 +317,18 @@ namespace LunaDisc
         {
             Application.Exit();
         }
+
+        private void renameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RenameDialog r = new RenameDialog();
+            r.name = lvBrowser.SelectedItems[0].Text;
+            r.ShowDialog();
+            if(r.DialogResult == DialogResult.OK)
+            {
+                image.renameOrMoveFile(lvBrowser.SelectedItems[0].Text, r.name);
+                lvBrowser.SelectedItems[0].Text = r.name;
+                lvBrowser.SelectedItems[0].ForeColor = Color.Blue;
+            }
+        }
     }
 }

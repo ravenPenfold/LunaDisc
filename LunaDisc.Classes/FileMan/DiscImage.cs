@@ -39,8 +39,8 @@ namespace LunaDisc.Classes.FileMan
 
         public void renameOrMoveFile(string oldName, string newName)
         {
-            ignoreList.Add(oldName);
-
+            dataToWrite.Add(new FileWriting(newName, false, getAllBytes(oldName)));
+            ignoreList.Add(path + oldName);
         }
 
         // for Returning
@@ -115,7 +115,7 @@ namespace LunaDisc.Classes.FileMan
             switch (fType)
             {
                 case Types.TYPE_CD_DISC:
-                    Iso_Cdrom.buildImage(actualPath, volumeName, dataToWrite);
+                    Iso_Cdrom.buildImage(actualPath, volumeName, dataToWrite, ignoreList);
                     break;
             }
             dataToWrite = new List<FileWriting>();
@@ -168,6 +168,19 @@ namespace LunaDisc.Classes.FileMan
                     break;
             }
             return returner;
+        }
+
+        // Get all Bytes
+        public byte[] getAllBytes(string path)
+        {
+            byte[] bytes = new byte[0];
+            switch (fType)
+            {
+                case Types.TYPE_CD_DISC:
+                    bytes = Iso_Cdrom.getAllBytes(path, actualPath);
+                    break;
+            }
+            return bytes;
         }
 
         // Extractors

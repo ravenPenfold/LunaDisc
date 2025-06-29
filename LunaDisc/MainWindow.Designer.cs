@@ -100,7 +100,7 @@ namespace LunaDisc
             createADiskImageToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cDROMImageisoToolStripMenuItem });
             createADiskImageToolStripMenuItem.Image = Properties.Resources.New;
             createADiskImageToolStripMenuItem.Name = "createADiskImageToolStripMenuItem";
-            createADiskImageToolStripMenuItem.Size = new Size(184, 26);
+            createADiskImageToolStripMenuItem.Size = new Size(178, 22);
             createADiskImageToolStripMenuItem.Text = "Create a Disk Image";
             createADiskImageToolStripMenuItem.Click += createADiskImageToolStripMenuItem_Click;
             // 
@@ -115,7 +115,7 @@ namespace LunaDisc
             // 
             tsbOpenImage.Image = Properties.Resources.Folder;
             tsbOpenImage.Name = "tsbOpenImage";
-            tsbOpenImage.Size = new Size(184, 26);
+            tsbOpenImage.Size = new Size(178, 22);
             tsbOpenImage.Text = "Open Image";
             tsbOpenImage.Click += tsbOpenImage_Click;
             // 
@@ -123,26 +123,26 @@ namespace LunaDisc
             // 
             saveImageToolStripMenuItem.Image = Properties.Resources.Save;
             saveImageToolStripMenuItem.Name = "saveImageToolStripMenuItem";
-            saveImageToolStripMenuItem.Size = new Size(184, 26);
+            saveImageToolStripMenuItem.Size = new Size(178, 22);
             saveImageToolStripMenuItem.Text = "Save Image";
             saveImageToolStripMenuItem.Click += saveImageToolStripMenuItem_Click;
             // 
             // saveImageAsToolStripMenuItem
             // 
             saveImageAsToolStripMenuItem.Name = "saveImageAsToolStripMenuItem";
-            saveImageAsToolStripMenuItem.Size = new Size(184, 26);
+            saveImageAsToolStripMenuItem.Size = new Size(178, 22);
             saveImageAsToolStripMenuItem.Text = "Save Image As...";
             saveImageAsToolStripMenuItem.Click += saveImageAsToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(181, 6);
+            toolStripSeparator1.Size = new Size(175, 6);
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(184, 26);
+            exitToolStripMenuItem.Size = new Size(178, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -273,6 +273,7 @@ namespace LunaDisc
             renameToolStripMenuItem.Name = "renameToolStripMenuItem";
             renameToolStripMenuItem.Size = new Size(130, 22);
             renameToolStripMenuItem.Text = "Rename";
+            renameToolStripMenuItem.Click += renameToolStripMenuItem_Click;
             // 
             // panVolInfo
             // 
