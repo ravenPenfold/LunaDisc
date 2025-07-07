@@ -19,6 +19,8 @@ namespace LunaDisc.Classes.ImageTypes
 
         public static void buildImage(string imagePath, string volumeId, List<DiscImage.FileWriting> data, List<string> ignores)
         {
+            List<string> names = new List<string>();
+
             if (File.Exists(imagePath))
             {
                 File.Move(imagePath, imagePath + ".tmp");

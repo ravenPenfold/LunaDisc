@@ -4,7 +4,10 @@ using LunaDisc.Data;
 using LunaDisc.UI;
 using LunaDisc.UI.Info;
 using System.Diagnostics;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 
 namespace LunaDisc
 {
@@ -323,7 +326,7 @@ namespace LunaDisc
             RenameDialog r = new RenameDialog();
             r.name = lvBrowser.SelectedItems[0].Text;
             r.ShowDialog();
-            if(r.DialogResult == DialogResult.OK)
+            if (r.DialogResult == DialogResult.OK)
             {
                 image.renameOrMoveFile(lvBrowser.SelectedItems[0].Text, r.name);
                 lvBrowser.SelectedItems[0].Text = r.name;

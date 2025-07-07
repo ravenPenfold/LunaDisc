@@ -3,6 +3,7 @@ using LunaDisc.Classes.Codes;
 using LunaDisc.Classes.ImageTypes;
 using System.Diagnostics;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace LunaDisc.Classes.FileMan
 {

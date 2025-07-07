@@ -7,8 +7,4 @@
     <AssemblyVersion>25.7.0.9319</AssemblyVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="DiscUtils" Version="0.16.13" />
-  </ItemGroup>
-
 </Project>
