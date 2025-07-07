@@ -28,6 +28,7 @@ namespace LunaDisc.Classes.FileMan
 
                 s.WriteLine("\n; Image Defaults");
                 s.WriteLine("defaultImageName = " + config.defaultImageName);
+                s.WriteLine("useJoilet = " + config.useJoilet);
 
                 s.WriteLine("\n; System Configurations - It's probably best that you leave these untouched...");
                 s.WriteLine("debug = " + config.debug);
@@ -74,6 +75,10 @@ namespace LunaDisc.Classes.FileMan
 
                             case "lastpath":
                                 config.lastPath = l[1];
+                                break;
+
+                            case "usejoilet":
+                                config.useJoilet = Convert.ToBoolean(l[1]);
                                 break;
 
                             default:

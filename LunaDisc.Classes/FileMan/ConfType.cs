@@ -13,6 +13,7 @@ namespace LunaDisc.Classes.FileMan
 
         // Image Defaults
         public string defaultImageName;
+        public bool useJoilet;
 
         // Paths
         public string lastPath;
@@ -21,6 +22,7 @@ namespace LunaDisc.Classes.FileMan
         {
             debug = false;
             defaultImageName = "IMAGE_NAME";
+            useJoilet = true;
             lastPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         }
     }

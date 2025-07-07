@@ -102,7 +102,7 @@ namespace LunaDisc
                 List<string> strings = ofd.FileName.Split("\\").ToList<string>();
                 foreach (string s in strings)
                 {
-                    if(s != strings.Last())
+                    if (s != strings.Last())
                     {
                         conf.config.lastPath += s + "\\";
                     }
@@ -133,7 +133,7 @@ namespace LunaDisc
             if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc") == false)
             {
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc");
-                
+
             }
             Log.Print(LogType.INFO, "LunaDisc Session Start");
             conf = new Configuration();
@@ -355,6 +355,16 @@ namespace LunaDisc
                 image.renameOrMoveFile(lvBrowser.SelectedItems[0].Text, r.name);
                 lvBrowser.SelectedItems[0].Text = r.name;
                 lvBrowser.SelectedItems[0].ForeColor = Color.Blue;
+            }
+        }
+
+        private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PreferencesDialog p = new PreferencesDialog(conf);
+            DialogResult dr = p.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                conf.loadConfig();
             }
         }
     }
