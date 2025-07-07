@@ -88,7 +88,7 @@ namespace LunaDisc.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 25.07.0-alpha1.
+        ///   Looks up a localized string similar to 25.08.0-alpha1.
         /// </summary>
         public static string appVersion {
             get {

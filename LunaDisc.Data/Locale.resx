@@ -129,7 +129,7 @@
     <comment>Title of the App</comment>
   </data>
   <data name="appVersion" xml:space="preserve">
-    <value>25.07.0-alpha1</value>
+    <value>25.08.0-alpha1</value>
   </data>
   <data name="appVersionAdvanced" xml:space="preserve">
     <value>Advanced Version Info:</value>
