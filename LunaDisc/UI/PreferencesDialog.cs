@@ -25,6 +25,13 @@ namespace LunaDisc.UI
         {
             txtCdRomImageName.Text = config.config.defaultImageName;
             chkCdRomUseJoilet.Checked = config.config.useJoilet;
+
+            debugEnable.Checked = config.config.debug;
+
+            if(config.config.debug == false)
+            {
+                debugTab.Dispose();
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -52,6 +59,7 @@ namespace LunaDisc.UI
         {
             config.config.defaultImageName = txtCdRomImageName.Text;
             config.config.useJoilet = chkCdRomUseJoilet.Checked;
+            config.config.debug = debugEnable.Checked;
             config.saveConfig();
         }
     }

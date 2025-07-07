@@ -85,6 +85,18 @@ namespace LunaDisc
         public MainWindow()
         {
             InitializeComponent();
+            if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc") == false)
+            {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc");
+
+            }
+            Log.Print(LogType.INFO, "LunaDisc Session Start");
+            conf = new Configuration();
+            if (conf.config.debug == true)
+            {
+                Log.Print(LogType.WARNING, "Debug Mode is enabled. There may be unfinished features, or testing features exposed to you. Please bear this in mind when making bug reports");
+            }
+            debugTools.Visible = conf.config.debug;
         }
 
         private void tsbOpenImage_Click(object sender, EventArgs e)
@@ -130,13 +142,6 @@ namespace LunaDisc
         private void MainWindow_Load(object sender, EventArgs e)
         {
             lvBrowser.View = View.Tile;
-            if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc") == false)
-            {
-                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc");
-
-            }
-            Log.Print(LogType.INFO, "LunaDisc Session Start");
-            conf = new Configuration();
             Text = Locale.appTitle;
             fileContextMenu.Text = Locale.fileCtxMenu;
             tsbOpenImage.Text = Locale.openImage;
@@ -365,7 +370,20 @@ namespace LunaDisc
             if (dr == DialogResult.OK)
             {
                 conf.loadConfig();
+                debugTools.Visible = conf.config.debug;
             }
+        }
+
+        private void memoryMonitorToolStripMenuItem_MouseHover(object sender, EventArgs e)
+        {
+            currentAppMemoryToolStripMenuItem.Text = "Working Memory: " + Environment.WorkingSet.ToString() + " bytes";
+            // FileInfo fi = new FileInfo(image.actualPath);
+            // imageSizeToolStripMenuItem.Text = "Image Filesize: " + fi.Length + " bytes";
+        }
+
+        private void fatalErrorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Log.Print(LogType.FATAL, "Test Fatal Error");
         }
     }
 }

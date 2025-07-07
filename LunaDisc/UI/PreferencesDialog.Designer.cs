@@ -32,6 +32,9 @@
             btnCancel = new Button();
             btnOk = new Button();
             tabs = new TabControl();
+            debugTab = new TabPage();
+            debugEnable = new CheckBox();
+            label1 = new Label();
             tabCDROMEdit = new TabPage();
             grpDefaultProperties = new GroupBox();
             chkCdRomUseJoilet = new CheckBox();
@@ -39,6 +42,7 @@
             lbImageName = new Label();
             panel1.SuspendLayout();
             tabs.SuspendLayout();
+            debugTab.SuspendLayout();
             tabCDROMEdit.SuspendLayout();
             grpDefaultProperties.SuspendLayout();
             SuspendLayout();
@@ -77,6 +81,7 @@
             // 
             // tabs
             // 
+            tabs.Controls.Add(debugTab);
             tabs.Controls.Add(tabCDROMEdit);
             tabs.Dock = DockStyle.Fill;
             tabs.Location = new Point(0, 0);
@@ -85,6 +90,36 @@
             tabs.Size = new Size(465, 420);
             tabs.TabIndex = 1;
             tabs.SelectedIndexChanged += tabs_SelectedIndexChanged;
+            // 
+            // debugTab
+            // 
+            debugTab.Controls.Add(debugEnable);
+            debugTab.Controls.Add(label1);
+            debugTab.Location = new Point(4, 24);
+            debugTab.Name = "debugTab";
+            debugTab.Size = new Size(457, 392);
+            debugTab.TabIndex = 1;
+            debugTab.Text = "DEBUG";
+            debugTab.UseVisualStyleBackColor = true;
+            // 
+            // debugEnable
+            // 
+            debugEnable.AutoSize = true;
+            debugEnable.Location = new Point(8, 370);
+            debugEnable.Name = "debugEnable";
+            debugEnable.Size = new Size(354, 19);
+            debugEnable.TabIndex = 1;
+            debugEnable.Text = "Debug Enabled? (Requires LunaDisc to restart before applying)";
+            debugEnable.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(8, 8);
+            label1.Name = "label1";
+            label1.Size = new Size(435, 30);
+            label1.TabIndex = 0;
+            label1.Text = "WARNING: These settings are experimental and should not be used in day-to-day\r\nuse.";
             // 
             // tabCDROMEdit
             // 
@@ -153,6 +188,8 @@
             Load += PreferencesDialog_Load;
             panel1.ResumeLayout(false);
             tabs.ResumeLayout(false);
+            debugTab.ResumeLayout(false);
+            debugTab.PerformLayout();
             tabCDROMEdit.ResumeLayout(false);
             grpDefaultProperties.ResumeLayout(false);
             grpDefaultProperties.PerformLayout();
@@ -170,5 +207,8 @@
         private TextBox txtCdRomImageName;
         private Label lbImageName;
         private CheckBox chkCdRomUseJoilet;
+        private TabPage debugTab;
+        private CheckBox debugEnable;
+        private Label label1;
     }
 }

@@ -45,11 +45,7 @@ namespace LunaDisc.Classes.FileMan
             if (!File.Exists(confPath))
             {
                 Log.Print(LogType.ERROR, "Configuration doesn't exist. Attempting generation of custom one...");
-                using (StreamWriter s = new StreamWriter(File.Open(confPath, FileMode.Create)))
-                {
-                    s.Write(Data.Properties.Resources.default_conf);
-                    s.Close();
-                }
+                saveConfig();
                 Log.Print(LogType.INFO, "Configuration generation successful");
             }
 
@@ -66,7 +62,7 @@ namespace LunaDisc.Classes.FileMan
                         switch (l[0].ToLower())
                         {
                             case "debug":
-                                config.debug = true;
+                                config.debug = Convert.ToBoolean(l[1]);
                                 break;
 
                             case "defaultimagename":

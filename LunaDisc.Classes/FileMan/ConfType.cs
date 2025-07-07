@@ -8,7 +8,7 @@ namespace LunaDisc.Classes.FileMan
 {
     public struct ConfType
     {
-        // Fixed Configurations (requires manual text editing)
+        // Fixed Configurations (requires manual text editing) & Debug Features
         public bool debug;
 
         // Image Defaults

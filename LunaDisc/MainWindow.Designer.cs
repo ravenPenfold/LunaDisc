@@ -37,6 +37,12 @@ namespace LunaDisc
             ListViewGroup listViewGroup4 = new ListViewGroup("New Files", HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             fileMenu = new MenuStrip();
+            debugTools = new ToolStripMenuItem();
+            memoryMonitorToolStripMenuItem = new ToolStripMenuItem();
+            currentAppMemoryToolStripMenuItem = new ToolStripMenuItem();
+            imageSizeToolStripMenuItem = new ToolStripMenuItem();
+            forceToolStripMenuItem = new ToolStripMenuItem();
+            fatalErrorToolStripMenuItem = new ToolStripMenuItem();
             tsmFile = new ToolStripMenuItem();
             createADiskImageToolStripMenuItem = new ToolStripMenuItem();
             cDROMImageisoToolStripMenuItem = new ToolStripMenuItem();
@@ -80,7 +86,7 @@ namespace LunaDisc
             // fileMenu
             // 
             fileMenu.ImageScalingSize = new Size(20, 20);
-            fileMenu.Items.AddRange(new ToolStripItem[] { tsmFile, helpToolStripMenuItem });
+            fileMenu.Items.AddRange(new ToolStripItem[] { debugTools, tsmFile, helpToolStripMenuItem });
             fileMenu.Location = new Point(0, 0);
             fileMenu.Name = "fileMenu";
             fileMenu.Padding = new Padding(5, 2, 0, 2);
@@ -88,6 +94,47 @@ namespace LunaDisc
             fileMenu.TabIndex = 0;
             fileMenu.Text = "menuStrip1";
             fileMenu.ItemClicked += fileMenu_ItemClicked;
+            // 
+            // debugTools
+            // 
+            debugTools.DropDownItems.AddRange(new ToolStripItem[] { memoryMonitorToolStripMenuItem, forceToolStripMenuItem });
+            debugTools.Name = "debugTools";
+            debugTools.Size = new Size(56, 20);
+            debugTools.Text = "DEBUG";
+            // 
+            // memoryMonitorToolStripMenuItem
+            // 
+            memoryMonitorToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { currentAppMemoryToolStripMenuItem, imageSizeToolStripMenuItem });
+            memoryMonitorToolStripMenuItem.Name = "memoryMonitorToolStripMenuItem";
+            memoryMonitorToolStripMenuItem.Size = new Size(165, 22);
+            memoryMonitorToolStripMenuItem.Text = "Memory Monitor";
+            memoryMonitorToolStripMenuItem.MouseHover += memoryMonitorToolStripMenuItem_MouseHover;
+            // 
+            // currentAppMemoryToolStripMenuItem
+            // 
+            currentAppMemoryToolStripMenuItem.Name = "currentAppMemoryToolStripMenuItem";
+            currentAppMemoryToolStripMenuItem.Size = new Size(179, 22);
+            currentAppMemoryToolStripMenuItem.Text = "currentAppMemory";
+            // 
+            // imageSizeToolStripMenuItem
+            // 
+            imageSizeToolStripMenuItem.Name = "imageSizeToolStripMenuItem";
+            imageSizeToolStripMenuItem.Size = new Size(179, 22);
+            imageSizeToolStripMenuItem.Text = "imageFileSize";
+            // 
+            // forceToolStripMenuItem
+            // 
+            forceToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { fatalErrorToolStripMenuItem });
+            forceToolStripMenuItem.Name = "forceToolStripMenuItem";
+            forceToolStripMenuItem.Size = new Size(165, 22);
+            forceToolStripMenuItem.Text = "Force...";
+            // 
+            // fatalErrorToolStripMenuItem
+            // 
+            fatalErrorToolStripMenuItem.Name = "fatalErrorToolStripMenuItem";
+            fatalErrorToolStripMenuItem.Size = new Size(127, 22);
+            fatalErrorToolStripMenuItem.Text = "Fatal Error";
+            fatalErrorToolStripMenuItem.Click += fatalErrorToolStripMenuItem_Click;
             // 
             // tsmFile
             // 
@@ -101,7 +148,7 @@ namespace LunaDisc
             createADiskImageToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cDROMImageisoToolStripMenuItem });
             createADiskImageToolStripMenuItem.Image = Properties.Resources.New;
             createADiskImageToolStripMenuItem.Name = "createADiskImageToolStripMenuItem";
-            createADiskImageToolStripMenuItem.Size = new Size(184, 26);
+            createADiskImageToolStripMenuItem.Size = new Size(178, 22);
             createADiskImageToolStripMenuItem.Text = "Create a Disk Image";
             createADiskImageToolStripMenuItem.Click += createADiskImageToolStripMenuItem_Click;
             // 
@@ -116,7 +163,7 @@ namespace LunaDisc
             // 
             tsbOpenImage.Image = Properties.Resources.Folder;
             tsbOpenImage.Name = "tsbOpenImage";
-            tsbOpenImage.Size = new Size(184, 26);
+            tsbOpenImage.Size = new Size(178, 22);
             tsbOpenImage.Text = "Open Image";
             tsbOpenImage.Click += tsbOpenImage_Click;
             // 
@@ -124,33 +171,33 @@ namespace LunaDisc
             // 
             saveImageToolStripMenuItem.Image = Properties.Resources.Save;
             saveImageToolStripMenuItem.Name = "saveImageToolStripMenuItem";
-            saveImageToolStripMenuItem.Size = new Size(184, 26);
+            saveImageToolStripMenuItem.Size = new Size(178, 22);
             saveImageToolStripMenuItem.Text = "Save Image";
             saveImageToolStripMenuItem.Click += saveImageToolStripMenuItem_Click;
             // 
             // saveImageAsToolStripMenuItem
             // 
             saveImageAsToolStripMenuItem.Name = "saveImageAsToolStripMenuItem";
-            saveImageAsToolStripMenuItem.Size = new Size(184, 26);
+            saveImageAsToolStripMenuItem.Size = new Size(178, 22);
             saveImageAsToolStripMenuItem.Text = "Save Image As...";
             saveImageAsToolStripMenuItem.Click += saveImageAsToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(181, 6);
+            toolStripSeparator1.Size = new Size(175, 6);
             // 
             // preferencesToolStripMenuItem
             // 
             preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            preferencesToolStripMenuItem.Size = new Size(184, 26);
+            preferencesToolStripMenuItem.Size = new Size(178, 22);
             preferencesToolStripMenuItem.Text = "Preferences";
             preferencesToolStripMenuItem.Click += preferencesToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(184, 26);
+            exitToolStripMenuItem.Size = new Size(178, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -430,5 +477,11 @@ namespace LunaDisc
         private ToolStripMenuItem directoryToolStripMenuItem;
         private ToolStripMenuItem renameToolStripMenuItem;
         private ToolStripMenuItem preferencesToolStripMenuItem;
+        private ToolStripMenuItem debugTools;
+        private ToolStripMenuItem memoryMonitorToolStripMenuItem;
+        private ToolStripMenuItem currentAppMemoryToolStripMenuItem;
+        private ToolStripMenuItem imageSizeToolStripMenuItem;
+        private ToolStripMenuItem forceToolStripMenuItem;
+        private ToolStripMenuItem fatalErrorToolStripMenuItem;
     }
 }
