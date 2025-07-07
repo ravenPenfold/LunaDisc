@@ -15,10 +15,12 @@ namespace LunaDisc
     {
         // Definitions
         DiscImage image;
+        Configuration conf;
 
         // New Functions
         private void listFiles(string path)
         {
+            Log.Print(LogType.INFO, "Start loading of directory listing \"" + path + "\"");
             image.path = path;
             tstActiveDirectory.Text = path;
             panProgress.Visible = true;
@@ -75,7 +77,7 @@ namespace LunaDisc
                     }
                 }
             }
-
+            Log.Print(LogType.INFO, "Finished loading directory listing");
             panProgress.Visible = false;
         }
 
@@ -96,6 +98,15 @@ namespace LunaDisc
             if (dr == DialogResult.OK)
             {
                 image = new DiscImage(ofd.FileName, Classes.Codes.Types.TYPE_CD_DISC);
+                conf.config.lastPath = "";
+                List<string> strings = ofd.FileName.Split("\\").ToList<string>();
+                foreach (string s in strings)
+                {
+                    if(s != strings.Last())
+                    {
+                        conf.config.lastPath += s + "\\";
+                    }
+                }
                 tstActiveDirectory.Text = "\\";
                 listFiles("\\");
                 panVolId.Visible = true;
@@ -122,7 +133,10 @@ namespace LunaDisc
             if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc") == false)
             {
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc");
+                
             }
+            Log.Print(LogType.INFO, "LunaDisc Session Start");
+            conf = new Configuration();
             Text = Locale.appTitle;
             fileContextMenu.Text = Locale.fileCtxMenu;
             tsbOpenImage.Text = Locale.openImage;
@@ -254,6 +268,14 @@ namespace LunaDisc
             DialogResult dr = sfd.ShowDialog();
             if (dr == DialogResult.OK)
             {
+                List<string> strings = sfd.FileName.Split("\\").ToList<string>();
+                foreach (string s in strings)
+                {
+                    if (s != strings.Last())
+                    {
+                        conf.config.lastPath += s + "\\";
+                    }
+                }
                 if (File.Exists(sfd.FileName))
                 {
                     File.Delete(sfd.FileName);
@@ -314,6 +336,8 @@ namespace LunaDisc
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             DiscImage.cleanUp();
+            conf.saveConfig();
+            Log.CloseLog();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

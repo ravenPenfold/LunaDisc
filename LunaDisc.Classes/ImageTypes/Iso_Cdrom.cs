@@ -11,10 +11,12 @@ namespace LunaDisc.Classes.ImageTypes
         // Image Builder
         public static void generateNewImage(string imagePath, string volumeId)
         {
+            Log.Print(LogType.INFO, "Begin generation of image");
             CDBuilder cdBuilder = new CDBuilder();
             cdBuilder.VolumeIdentifier = volumeId;
             cdBuilder.UseJoliet = true;
             cdBuilder.Build(imagePath);
+            Log.Print(LogType.INFO, "Image generation successful");
         }
 
         public static void buildImage(string imagePath, string volumeId, List<DiscImage.FileWriting> data, List<string> ignores)
@@ -24,6 +26,7 @@ namespace LunaDisc.Classes.ImageTypes
             if (File.Exists(imagePath))
             {
                 File.Move(imagePath, imagePath + ".tmp");
+                Log.Print(LogType.INFO, "Get existing info from image...");
                 using (FileStream fs = new FileStream(imagePath + ".tmp", FileMode.Open))
                 {
                     CDReader cdReader = new CDReader(fs, true);
@@ -62,7 +65,10 @@ namespace LunaDisc.Classes.ImageTypes
                             read.Close();
                         }
                     }
+                    Log.Print(LogType.INFO, "No. Directories to copy from original image (incl. Root) - " + directories.Count());
+                    Log.Print(LogType.INFO, "No. Files & Directories to copy from original image (incl. Root) - " + data.Count());
                 }
+                Log.Print(LogType.INFO, "Remove old image...");
                 File.Delete(imagePath + ".tmp");
             }
 
@@ -71,12 +77,11 @@ namespace LunaDisc.Classes.ImageTypes
             cdBuilder.VolumeIdentifier = volumeId;
 
             List<int> removeIds = new List<int>();
-            foreach(var i in ignores)
+            foreach (var i in ignores)
             {
-                Debug.WriteLine(i);
-                foreach(var d in data)
+                foreach (var d in data)
                 {
-                    if(d.fileLocation == i)
+                    if (d.fileLocation == i)
                     {
                         Debug.WriteLine("ID to delete: " + data.IndexOf(d));
                     }
@@ -88,15 +93,17 @@ namespace LunaDisc.Classes.ImageTypes
                 if (w.isDirectory == true)
                 {
                     cdBuilder.AddDirectory(w.fileLocation);
+                    Log.Print(LogType.INFO, "Added directory \"" + w.fileLocation + "\"");
                 }
                 else
                 {
                     cdBuilder.AddFile(w.fileLocation, w.data);
+                    Log.Print(LogType.INFO, "Added file \"" + w.fileLocation + "\" of size " + w.data.Length + " bytes");
                 }
             }
-
+            Log.Print(LogType.INFO, "Constructing image...");
             cdBuilder.Build(imagePath);
-            Debug.WriteLine("Finished Exporting");
+            Log.Print(LogType.INFO, "Finished Exporting");
         }
 
         // Volume Information

@@ -35,12 +35,15 @@ namespace LunaDisc.Classes.FileMan
         
         public void removeFile(string fileName)
         {
+            Log.Print(LogType.INFO, fileName + " added to IgnoreList");
             ignoreList.Add(fileName);
         }
 
         public void renameOrMoveFile(string oldName, string newName)
         {
             dataToWrite.Add(new FileWriting(newName, false, getAllBytes(oldName)));
+            Log.Print(LogType.INFO, oldName + " added to IgnoreList");
+            Log.Print(LogType.INFO, newName + " added to DataToWrite List");
             ignoreList.Add(path + oldName);
         }
 
@@ -60,21 +63,25 @@ namespace LunaDisc.Classes.FileMan
         // Initaliser
         public DiscImage(string fileName, Types type)
         {
+            Log.Print(LogType.INFO, "Begun load of " + type + " image \"" + fileName + "\"");
             dataToWrite = new List<FileWriting>();
             ignoreList = new List<string>();
             actualPath = fileName;
             path = "\\";
             fType = type;
+            Log.Print(LogType.INFO, "Image loaded successfully");
         }
 
         public DiscImage(Types type, string volumeName)
         {
+            Log.Print(LogType.INFO, "Creating new " + type + " image with the volume name \"" + volumeName + "\"");
             path = "\\";
             fType = type;
             dataToWrite = new List<FileWriting>();
             ignoreList = new List<string>();
             actualPath = tempPath;
             newImage(volumeName);
+            Log.Print(LogType.INFO, "Image created successfully");
         }
 
         // Get volume information
@@ -96,6 +103,7 @@ namespace LunaDisc.Classes.FileMan
             if (File.Exists(tempPath))
             {
                 File.Delete(tempPath);
+                Log.Print(LogType.INFO, "Temporary image removed");
             }
         }
 
@@ -113,6 +121,7 @@ namespace LunaDisc.Classes.FileMan
 
         public void buildImage(string volumeName)
         {
+            Log.Print(LogType.INFO, "Begin building of image \"" + volumeName + "\"");
             switch (fType)
             {
                 case Types.TYPE_CD_DISC:
@@ -121,6 +130,7 @@ namespace LunaDisc.Classes.FileMan
             }
             dataToWrite = new List<FileWriting>();
             cleanUp();
+            Log.Print(LogType.INFO, "Image built successfully");
         }
 
         public void addFile(string file, string path)
@@ -131,6 +141,7 @@ namespace LunaDisc.Classes.FileMan
                 {
                     case Types.TYPE_CD_DISC:
                         // Iso_Cdrom.saveImage(tempFile, volumeName(), path + file.Split("\\").Last(), File.ReadAllBytes(file));
+                        Log.Print(LogType.INFO, "\"" + file + "\" added to DataToWrite list");
                         dataToWrite.Add(new FileWriting(path, false, File.ReadAllBytes(file)));
                         break;
                 }
@@ -139,6 +150,7 @@ namespace LunaDisc.Classes.FileMan
 
         public void addDirectory(string directory)
         {
+            Log.Print(LogType.INFO, "\"" + directory + "\" added to DataToWrite list");
             switch (fType)
             {
                 case Types.TYPE_CD_DISC:
@@ -187,6 +199,7 @@ namespace LunaDisc.Classes.FileMan
         // Extractors
         public ErrorCodes extractFile(string path, string output)
         {
+            Log.Print(LogType.INFO, "Begin extraction of file \"" + path);
             ErrorCodes ec = ErrorCodes.NoError;
             switch (fType)
             {
@@ -195,6 +208,7 @@ namespace LunaDisc.Classes.FileMan
                     break;
             }
             return ec;
+            Log.Print(LogType.INFO, "Extraction of \"" + path + "\" successful");
         }
     }
 }

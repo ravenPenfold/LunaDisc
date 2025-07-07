@@ -1,0 +1,7 @@
+﻿; ======= LunaDisc Configuration =========
+
+; Sets default Image Name
+defaultImageName = NEW_IMAGE
+
+; You should not mess with these settings, as they may have unintended consequences
+debug = false
