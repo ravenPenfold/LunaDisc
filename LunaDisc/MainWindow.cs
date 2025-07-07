@@ -294,7 +294,7 @@ namespace LunaDisc
         private void cDROMImageisoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panVolId.Visible = true;
-            txtVolumeId.Text = "NEW_IMAGE";
+            txtVolumeId.Text = conf.config.defaultImageName;
             image = new DiscImage(Types.TYPE_CD_DISC, txtVolumeId.Text);
 
             listFiles("\\");
