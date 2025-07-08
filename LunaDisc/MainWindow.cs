@@ -21,13 +21,23 @@ namespace LunaDisc
         // New Functions
         private void localeUpdate()
         {
-            Text = Locale.appTitle;                             // App Title
-            fileContextMenu.Text = Locale.fileCtxMenu;          // File Context Menu
-            tsbOpenImage.Text = Locale.openImage;               // Open Image Button
+            Text = Locale.appTitle;                                         // App Title
+            fileContextMenu.Text = Locale.fileCtxMenu;                      // File Context Menu
+            tsbOpenImage.Text = Locale.openImage;                           // Open Image Button
+            saveImageAsToolStripMenuItem.Text = Locale.saveImageAs;         // Save Image
+            saveImageToolStripMenuItem.Text = Locale.saveImage;             // Save Image As
+            preferencesToolStripMenuItem.Text = Locale.preferencesTitle;    // Preferences
+            exitToolStripMenuItem.Text = Locale.exitButton;                 // Exit
 
-            tsbBackDirectory.Text = Locale.upDirectory;         // Go Up Directory Button
-            lVolumeId.Text = Locale.volumeId;                   // Volume ID: Label
-            lVolumeInfo.Text = Locale.volumeInfo;               // Volume Info Editor Header
+            createADiskImageToolStripMenuItem.Text = Locale.createImage;    // Create Disc Image
+            cDROMImageisoToolStripMenuItem.Text = Locale.cdRomImage;        // CD-Rom Image Type
+
+            helpToolStripMenuItem.Text = Locale.helpCtxMenu;                // Help
+            aboutToolStripMenuItem.Text = Locale.aboutTitle;                // About Button
+
+            tsbBackDirectory.Text = Locale.upDirectory;                     // Go Up Directory Button
+            lVolumeId.Text = Locale.volumeId;                               // Volume ID: Label
+            lVolumeInfo.Text = Locale.volumeInfo;                           // Volume Info Editor Header
         }
 
         private void listFiles(string path)

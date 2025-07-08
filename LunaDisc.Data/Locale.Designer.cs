@@ -124,11 +124,29 @@ namespace LunaDisc.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CD-ROM Disc Image (.iso).
+        /// </summary>
+        public static string cdRomImage {
+            get {
+                return ResourceManager.GetString("cdRomImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clearing Browser....
         /// </summary>
         public static string clearBrowser {
             get {
                 return ResourceManager.GetString("clearBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a Disc Image.
+        /// </summary>
+        public static string createImage {
+            get {
+                return ResourceManager.GetString("createImage", resourceCulture);
             }
         }
         
@@ -147,6 +165,15 @@ namespace LunaDisc.Data {
         public static string dlgRenameHeader {
             get {
                 return ResourceManager.GetString("dlgRenameHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string exitButton {
+            get {
+                return ResourceManager.GetString("exitButton", resourceCulture);
             }
         }
         
@@ -174,6 +201,15 @@ namespace LunaDisc.Data {
         public static string getFiles {
             get {
                 return ResourceManager.GetString("getFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string helpCtxMenu {
+            get {
+                return ResourceManager.GetString("helpCtxMenu", resourceCulture);
             }
         }
         
@@ -210,6 +246,24 @@ namespace LunaDisc.Data {
         public static string renameDescription {
             get {
                 return ResourceManager.GetString("renameDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Image.
+        /// </summary>
+        public static string saveImage {
+            get {
+                return ResourceManager.GetString("saveImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Image As....
+        /// </summary>
+        public static string saveImageAs {
+            get {
+                return ResourceManager.GetString("saveImageAs", resourceCulture);
             }
         }
         

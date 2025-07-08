@@ -145,9 +145,17 @@
     <value>Cancel</value>
     <comment>Cancel Button</comment>
   </data>
+  <data name="cdRomImage" xml:space="preserve">
+    <value>CD-ROM Disc Image (.iso)</value>
+    <comment>CD-ROM Disc Image Type</comment>
+  </data>
   <data name="clearBrowser" xml:space="preserve">
     <value>Clearing Browser...</value>
     <comment>Clear Browser Status Update</comment>
+  </data>
+  <data name="createImage" xml:space="preserve">
+    <value>Create a Disc Image</value>
+    <comment>Create Disc Image Button</comment>
   </data>
   <data name="dlgCreateDirectoryHeader" xml:space="preserve">
     <value>Create a new Directory</value>
@@ -156,6 +164,10 @@
   <data name="dlgRenameHeader" xml:space="preserve">
     <value>Rename </value>
     <comment>Rename File Button</comment>
+  </data>
+  <data name="exitButton" xml:space="preserve">
+    <value>Exit</value>
+    <comment>Exit Button</comment>
   </data>
   <data name="fileCtxMenu" xml:space="preserve">
     <value>File</value>
@@ -168,6 +180,10 @@
   <data name="getFiles" xml:space="preserve">
     <value>Getting Files...</value>
     <comment>Getting Files Status Update</comment>
+  </data>
+  <data name="helpCtxMenu" xml:space="preserve">
+    <value>Help</value>
+    <comment>Help Context Menu Button</comment>
   </data>
   <data name="okButton" xml:space="preserve">
     <value>Ok</value>
@@ -184,6 +200,14 @@
   <data name="renameDescription" xml:space="preserve">
     <value>Please enter a unique name below.</value>
     <comment>Rename File Description</comment>
+  </data>
+  <data name="saveImage" xml:space="preserve">
+    <value>Save Image</value>
+    <comment>Save Image Button</comment>
+  </data>
+  <data name="saveImageAs" xml:space="preserve">
+    <value>Save Image As...</value>
+    <comment>Save Image As... button</comment>
   </data>
   <data name="updateList" xml:space="preserve">
     <value>Updating Browser...</value>
