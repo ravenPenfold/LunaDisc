@@ -23,13 +23,26 @@ namespace LunaDisc.Classes.FileMan
             if(type == LogType.FATAL)
             {
                 System.Media.SystemSounds.Hand.Play();
-                MessageBox((IntPtr)0, "A fatal error occurred, and LunaDisc needs to close. Please see below for the message:\n\"" + message + "\"\nYou can view the log in the %APPDATA% folder for more details.", "Fatal Error", 0);
-                CloseLog();
+                string path = CloseLog();
+                MessageBox((IntPtr)0, "A fatal error occurred, and LunaDisc needs to close.\n\nError Message: " + message + "\n\nYou can view the log at " + path + " for more details.", "Fatal Error", 0);
                 Environment.Exit(1);
             }
         }
 
-        public static void CloseLog()
+        public static void Print(Exception ex)
+        {
+            string log = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc\\active.log";
+            string toWrite = "[" + DateTime.Now.ToString() + " | " + LogType.FATAL + "] " + "An fatal exception has occurred, LunaDisc will now close. Please see below for further details: ";
+            Debug.WriteLine(toWrite);
+            Console.WriteLine(toWrite);
+            File.AppendAllText(log, toWrite + "\n===========" + "\n\n" + "Message: " + ex.Message + "\n\nStack Trace:\n" + ex.StackTrace + "\n\n===========\n");
+            string path = CloseLog();
+            MessageBox((IntPtr)0, "A fatal error occurred, and LunaDisc needs to close.\n\nError Message: " + ex.Message + "\n\nYou can view the log at " + path + " for more details.", "Fatal Error", 0);
+            Environment.Exit(1);
+
+        }
+
+        public static string CloseLog()
         {
             Print(LogType.INFO, "Close session request sent, moving log file to backup...");
             if(!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\\\LunaDisc\\Logs"))
@@ -41,6 +54,7 @@ namespace LunaDisc.Classes.FileMan
             string oldLog = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc\\active.log";
             string newLog = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LunaDisc\\Logs\\SessionEnd_" + DateTime.Now.ToString().Replace("/", "-").Replace(" ", "_").Replace(":",".") + ".log";
             File.Move(oldLog, newLog);
+            return newLog;
         }
     }
 

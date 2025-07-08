@@ -119,80 +119,90 @@
   </resheader>
   <data name="aboutTitle" xml:space="preserve">
     <value>About </value>
+    <comment>About Dialog Title</comment>
   </data>
   <data name="appLicenseInfo" xml:space="preserve">
     <value> is licensed under the GPL-3.0 License</value>
-    <comment>License Button text</comment>
+    <comment>App License Info</comment>
   </data>
   <data name="appTitle" xml:space="preserve">
     <value>LunaDisc</value>
-    <comment>Title of the App</comment>
+    <comment>App TItle</comment>
   </data>
   <data name="appVersion" xml:space="preserve">
     <value>25.08.0-alpha1</value>
+    <comment>App Version Number</comment>
   </data>
   <data name="appVersionAdvanced" xml:space="preserve">
     <value>Advanced Version Info:</value>
+    <comment>App Runtime Version Prefix</comment>
   </data>
   <data name="appVersionPrefix" xml:space="preserve">
     <value>Version: </value>
-    <comment>Version Prefix</comment>
+    <comment>App Version Number Prefix</comment>
   </data>
   <data name="cancelButton" xml:space="preserve">
     <value>Cancel</value>
-    <comment>Common Cancel Button</comment>
+    <comment>Cancel Button</comment>
   </data>
   <data name="clearBrowser" xml:space="preserve">
     <value>Clearing Browser...</value>
-    <comment>Status Update - Clear Browser</comment>
+    <comment>Clear Browser Status Update</comment>
   </data>
   <data name="dlgCreateDirectoryHeader" xml:space="preserve">
     <value>Create a new Directory</value>
+    <comment>Create New Directory button</comment>
   </data>
   <data name="dlgRenameHeader" xml:space="preserve">
     <value>Rename </value>
+    <comment>Rename File Button</comment>
   </data>
   <data name="fileCtxMenu" xml:space="preserve">
     <value>File</value>
-    <comment>File Context Menu Button</comment>
+    <comment>File Context Menu</comment>
   </data>
   <data name="getDirectories" xml:space="preserve">
     <value>Getting Directories...</value>
-    <comment>Status Update - Get Directories from Image</comment>
+    <comment>Getting Directories Status Update</comment>
   </data>
   <data name="getFiles" xml:space="preserve">
     <value>Getting Files...</value>
-    <comment>Status Update - Get files from image</comment>
+    <comment>Getting Files Status Update</comment>
   </data>
   <data name="okButton" xml:space="preserve">
     <value>Ok</value>
-    <comment>Common Ok Button</comment>
+    <comment>Ok Button</comment>
   </data>
   <data name="openImage" xml:space="preserve">
     <value>Open an Disc Image</value>
-    <comment>open a disk image button</comment>
+    <comment>Open Disc Image Button</comment>
+  </data>
+  <data name="preferencesTitle" xml:space="preserve">
+    <value>Preferences</value>
+    <comment>Preferences Dialog Title</comment>
   </data>
   <data name="renameDescription" xml:space="preserve">
     <value>Please enter a unique name below.</value>
+    <comment>Rename File Description</comment>
   </data>
   <data name="updateList" xml:space="preserve">
     <value>Updating Browser...</value>
-    <comment>Status update - update file browser</comment>
+    <comment>Updating Browser Status Update</comment>
   </data>
   <data name="upDirectory" xml:space="preserve">
     <value>Go Up a Directory</value>
-    <comment>go up a directory text</comment>
+    <comment>Go Up Directory Button</comment>
   </data>
   <data name="visitGit" xml:space="preserve">
     <value>Visit the GitHub Repository</value>
-    <comment>Link to GitHub</comment>
+    <comment>Visit GitHub Button</comment>
   </data>
   <data name="volumeId" xml:space="preserve">
     <value>Volume ID: </value>
-    <comment>Volume ID Prefix</comment>
+    <comment>Volume ID Text</comment>
   </data>
   <data name="volumeInfo" xml:space="preserve">
     <value>Volume Information</value>
-    <comment>Volume Info Header</comment>
+    <comment>Volume Info Editor Header</comment>
   </data>
 </root>

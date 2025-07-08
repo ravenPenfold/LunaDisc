@@ -196,6 +196,15 @@ namespace LunaDisc.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preferences.
+        /// </summary>
+        public static string preferencesTitle {
+            get {
+                return ResourceManager.GetString("preferencesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter a unique name below..
         /// </summary>
         public static string renameDescription {

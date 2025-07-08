@@ -3,6 +3,7 @@ using LunaDisc.Classes.FileMan;
 using LunaDisc.Data;
 using LunaDisc.UI;
 using LunaDisc.UI.Info;
+using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -18,6 +19,17 @@ namespace LunaDisc
         Configuration conf;
 
         // New Functions
+        private void localeUpdate()
+        {
+            Text = Locale.appTitle;                             // App Title
+            fileContextMenu.Text = Locale.fileCtxMenu;          // File Context Menu
+            tsbOpenImage.Text = Locale.openImage;               // Open Image Button
+
+            tsbBackDirectory.Text = Locale.upDirectory;         // Go Up Directory Button
+            lVolumeId.Text = Locale.volumeId;                   // Volume ID: Label
+            lVolumeInfo.Text = Locale.volumeInfo;               // Volume Info Editor Header
+        }
+
         private void listFiles(string path)
         {
             Log.Print(LogType.INFO, "Start loading of directory listing \"" + path + "\"");
@@ -142,12 +154,8 @@ namespace LunaDisc
         private void MainWindow_Load(object sender, EventArgs e)
         {
             lvBrowser.View = View.Tile;
-            Text = Locale.appTitle;
-            fileContextMenu.Text = Locale.fileCtxMenu;
-            tsbOpenImage.Text = Locale.openImage;
-            tsbBackDirectory.Text = Locale.upDirectory;
-            lVolumeId.Text = Locale.volumeId;
-            lVolumeInfo.Text = Locale.volumeInfo;
+
+            localeUpdate();
 
             tstActiveDirectory.Width = toolStrip.Width - tsbBackDirectory.Width - 20;
         }
@@ -383,7 +391,7 @@ namespace LunaDisc
 
         private void fatalErrorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Log.Print(LogType.FATAL, "Test Fatal Error");
+            throw new NotImplementedException("Test Exception");
         }
     }
 }
