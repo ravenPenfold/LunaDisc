@@ -106,7 +106,7 @@ namespace LunaDisc
             // 
             memoryMonitorToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { currentAppMemoryToolStripMenuItem, imageSizeToolStripMenuItem });
             memoryMonitorToolStripMenuItem.Name = "memoryMonitorToolStripMenuItem";
-            memoryMonitorToolStripMenuItem.Size = new Size(165, 22);
+            memoryMonitorToolStripMenuItem.Size = new Size(180, 22);
             memoryMonitorToolStripMenuItem.Text = "Memory Monitor";
             memoryMonitorToolStripMenuItem.MouseHover += memoryMonitorToolStripMenuItem_MouseHover;
             // 
@@ -126,7 +126,7 @@ namespace LunaDisc
             // 
             forceToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { fatalErrorToolStripMenuItem });
             forceToolStripMenuItem.Name = "forceToolStripMenuItem";
-            forceToolStripMenuItem.Size = new Size(165, 22);
+            forceToolStripMenuItem.Size = new Size(180, 22);
             forceToolStripMenuItem.Text = "Force...";
             // 
             // fatalErrorToolStripMenuItem

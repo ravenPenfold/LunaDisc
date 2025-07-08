@@ -385,8 +385,8 @@ namespace LunaDisc
         private void memoryMonitorToolStripMenuItem_MouseHover(object sender, EventArgs e)
         {
             currentAppMemoryToolStripMenuItem.Text = "Working Memory: " + Environment.WorkingSet.ToString() + " bytes";
-            // FileInfo fi = new FileInfo(image.actualPath);
-            // imageSizeToolStripMenuItem.Text = "Image Filesize: " + fi.Length + " bytes";
+            //FileInfo fi = new FileInfo(image.actualPath);
+            //imageSizeToolStripMenuItem.Text = "Image Filesize: " + fi.Length + " bytes";
         }
 
         private void fatalErrorToolStripMenuItem_Click(object sender, EventArgs e)
