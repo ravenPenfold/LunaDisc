@@ -34,7 +34,7 @@ namespace LunaDisc.UI.Info
         {
             Text = Locale.aboutTitle + Locale.appTitle;
             lAboutMain.Text = Locale.appTitle;
-            lDetails.Text = Locale.appVersionPrefix + Locale.appVersion;
+            lDetails.Text = Locale.appVersionPrefix + Application.ProductVersion.Split("+").First();
             lLicense.Text = Locale.appTitle + Locale.appLicenseInfo;
             bOk.Text = Locale.okButton;
             lMoreInfo.Text = Locale.appVersionAdvanced +
