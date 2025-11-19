@@ -79,8 +79,7 @@
             lLicense.LinkClicked += lLicense_LinkClicked;
             // 
             // pictureBox1
-            // 
-            pictureBox1.Image = Properties.Resources.Logo;
+            // pictureBox1.Image = LunaDisc.Data.Properties.Resources.Logo;
             pictureBox1.Location = new Point(12, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(64, 64);

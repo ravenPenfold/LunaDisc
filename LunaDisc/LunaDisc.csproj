@@ -29,6 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\LunaDisc.Classes\LunaDisc.Classes.csproj" />
     <ProjectReference Include="..\LunaDisc.Data\LunaDisc.Data.csproj" />
+    <ProjectReference Include="..\LunaDisc.UI\LunaDisc.UI.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,7 +47,7 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
